@@ -5,12 +5,15 @@ import { Menu, MenuItem, Typography } from '@material-ui/core';
 
 import AddFriendDialog from './addFriend'
 import SettingsDialog from './settings'
+import ContactDialog from './contactList'
+
 export default function Header() {
 
     const [addEl, setAddEl] = useState(null)
 
     const [showAddFriend, setShowAddFriend] = useState(false)
     const [showUserSetting, setShowUserSetting] = useState(false)
+    const [showContact, setShowContact] = useState(false)
 
     const handleClickMore = (e) => {
         setAddEl(e.currentTarget)
@@ -39,7 +42,7 @@ export default function Header() {
                     onClose={() => setAddEl(null)}
                 >
 
-                    <MenuItem >
+                    <MenuItem onClick={() => setShowContact(true)}>
                         <Typography variant="inherit" noWrap>
                             New Chat
                     </Typography>
@@ -81,6 +84,12 @@ export default function Header() {
                 open={showUserSetting}
                 onClose={() => setShowUserSetting(false)}
             ></SettingsDialog>
+
+            <ContactDialog
+                open={showContact}
+                onClose={() => setShowContact(false)}
+            >
+            </ContactDialog>
         </>
     )
 }

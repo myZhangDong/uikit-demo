@@ -51,9 +51,9 @@ export default function AlertDialogSlide({ open, title, content, onClose, footer
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title" onClose={onClose}>
+                {title ? <DialogTitle id="alert-dialog-slide-title" onClose={onClose}>
                     {title}
-                </DialogTitle>
+                </DialogTitle> : null}
                 <DialogContent dividers style={{ padding: '0', borderBottom: 'none' }}>
                     {content}
                 </DialogContent>
