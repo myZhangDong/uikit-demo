@@ -1,19 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './index.css'
 
 import { Menu, MenuItem, Typography } from '@material-ui/core';
-
 import AddFriendDialog from './addFriend'
+import ChatGroupDialog from './chatGroup'
 import SettingsDialog from './settings'
+import WebIM,{initIMSDK} from '../../utils/WebIM'
+import initListen from '../../utils/WebIMListen'
+import loginChat from '../../api/loginChat/index.js'
 import ContactDialog from './contactList'
-
 export default function Header() {
 
     const [addEl, setAddEl] = useState(null)
 
     const [showAddFriend, setShowAddFriend] = useState(false)
+    const [showChatGroup, setShowChatGroup] = useState(false);
     const [showUserSetting, setShowUserSetting] = useState(false)
     const [showContact, setShowContact] = useState(false)
+
+    useEffect(() => {
+        initIMSDK();
+        initListen();
+    }, [])
+
+    useEffect(() => {
+        if (WebIM.conn.logOut) {
+            loginChat()
+        }
+    }, [WebIM])
 
     const handleClickMore = (e) => {
         setAddEl(e.currentTarget)
@@ -26,6 +40,14 @@ export default function Header() {
     function addFriend() {
         setShowAddFriend(true)
     }
+
+    function createGroupDialog() {
+        setShowChatGroup(true);
+    }
+    function handleCreateGroupDialogClose() {
+        setShowChatGroup(false);
+    }
+
 
     return (
         <>
@@ -47,7 +69,7 @@ export default function Header() {
                             New Chat
                     </Typography>
                     </MenuItem>
-                    <MenuItem >
+                    <MenuItem onClick={createGroupDialog}>
                         <Typography variant="inherit" noWrap>
                             Add a Group Chat
                     </Typography>
@@ -79,6 +101,11 @@ export default function Header() {
             <AddFriendDialog
                 open={showAddFriend}
                 onClose={handleAddFriendDialogClose} />
+
+            <ChatGroupDialog
+                open={showChatGroup}
+                onClose={handleCreateGroupDialogClose}
+            />
 
             <SettingsDialog
                 open={showUserSetting}
