@@ -53,10 +53,10 @@ export default function AlertDialogSlide({ open, title, content, onClose, footer
                 fullWidth={false}
                 maxWidth={maxWidth}
                 >
-                <DialogTitle id="alert-dialog-slide-title" onClose={onClose}>
+                {title ? <DialogTitle id="alert-dialog-slide-title" onClose={onClose}>
                     {title}
-                </DialogTitle>
-                <DialogContent dividers style={{ padding: '0', borderBottom: 'none',maxWidth:'880px' }}>
+                </DialogTitle> : null}
+                <DialogContent dividers style={{ padding: '0', borderBottom: 'none' }}>
                     {content}
                 </DialogContent>
                 {

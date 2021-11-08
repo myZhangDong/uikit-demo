@@ -8,6 +8,7 @@ import SettingsDialog from './settings'
 import WebIM,{initIMSDK} from '../../utils/WebIM'
 import initListen from '../../utils/WebIMListen'
 import loginChat from '../../api/loginChat/index.js'
+import ContactDialog from './contactList'
 export default function Header() {
 
     const [addEl, setAddEl] = useState(null)
@@ -15,6 +16,7 @@ export default function Header() {
     const [showAddFriend, setShowAddFriend] = useState(false)
     const [showChatGroup, setShowChatGroup] = useState(false);
     const [showUserSetting, setShowUserSetting] = useState(false)
+    const [showContact, setShowContact] = useState(false)
 
     useEffect(() => {
         initIMSDK();
@@ -62,7 +64,7 @@ export default function Header() {
                     onClose={() => setAddEl(null)}
                 >
 
-                    <MenuItem >
+                    <MenuItem onClick={() => setShowContact(true)}>
                         <Typography variant="inherit" noWrap>
                             New Chat
                     </Typography>
@@ -109,6 +111,12 @@ export default function Header() {
                 open={showUserSetting}
                 onClose={() => setShowUserSetting(false)}
             ></SettingsDialog>
+
+            <ContactDialog
+                open={showContact}
+                onClose={() => setShowContact(false)}
+            >
+            </ContactDialog>
         </>
     )
 }

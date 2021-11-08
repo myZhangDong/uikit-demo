@@ -82,7 +82,6 @@ const ChatGroupDialog = ({ open, onClose }) => {
     };
     const [groupCount, setGroupCount] = useState(0)
     useEffect(() => {
-        console.log('groupList>>>', groupList);
         setGroupCount(groupList.length)
     }, [groupList])
 
