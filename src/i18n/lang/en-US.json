@@ -1,6 +1,7 @@
 {
     "translation": {
         "login-Login": "Log in",
-        "login-NickName": "NickName"
+        "login-NickName": "NickName",
+        "accept": "Accept"
     }
 }

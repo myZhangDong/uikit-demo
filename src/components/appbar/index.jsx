@@ -5,10 +5,19 @@ import { Menu, MenuItem, Typography } from '@material-ui/core';
 import AddFriendDialog from './addFriend'
 import ChatGroupDialog from './chatGroup'
 import SettingsDialog from './settings'
-import WebIM,{initIMSDK} from '../../utils/WebIM'
+import WebIM, { initIMSDK } from '../../utils/WebIM'
 import initListen from '../../utils/WebIMListen'
 import loginChat from '../../api/loginChat/index.js'
 import ContactDialog from './contactList'
+import RequestDialog from './request'
+
+import newChatIcon from '../../assets/newchat@2x.png'
+import groupChatIcon from '../../assets/groupchat@2x.png'
+import addContactIcon from '../../assets/addcontact@2x.png'
+import requestsIcon from '../../assets/requests@2x.png'
+import settingsIcon from '../../assets/settings@2x.png'
+import logoutIcon from '../../assets/logout@2x.png'
+
 export default function Header() {
 
     const [addEl, setAddEl] = useState(null)
@@ -17,6 +26,7 @@ export default function Header() {
     const [showChatGroup, setShowChatGroup] = useState(false);
     const [showUserSetting, setShowUserSetting] = useState(false)
     const [showContact, setShowContact] = useState(false)
+    const [showRequest, setShowRequest] = useState(false)
 
     useEffect(() => {
         initIMSDK();
@@ -65,32 +75,38 @@ export default function Header() {
                 >
 
                     <MenuItem onClick={() => setShowContact(true)}>
-                        <Typography variant="inherit" noWrap>
+                        <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center' }}>
+                            <img src={newChatIcon} alt='new chat' style={{ width: '30px' }} />
                             New Chat
-                    </Typography>
+                        </Typography>
                     </MenuItem>
                     <MenuItem onClick={createGroupDialog}>
-                        <Typography variant="inherit" noWrap>
+                        <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center' }}>
+                            <img src={groupChatIcon} alt='new chat' style={{ width: '30px' }} />
                             Add a Group Chat
                     </Typography>
                     </MenuItem>
                     <MenuItem onClick={addFriend}>
-                        <Typography variant="inherit" noWrap>
+                        <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center' }}>
+                            <img src={addContactIcon} alt='new chat' style={{ width: '30px' }} />
                             Add Contact
                     </Typography>
                     </MenuItem>
-                    <MenuItem >
-                        <Typography variant="inherit" noWrap>
+                    <MenuItem onClick={() => setShowRequest(true)}>
+                        <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center' }}>
+                            <img src={requestsIcon} alt='new chat' style={{ width: '30px' }} />
                             Requests
                     </Typography>
                     </MenuItem>
                     <MenuItem onClick={() => setShowUserSetting(true)}>
-                        <Typography variant="inherit" noWrap>
+                        <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center' }}>
+                            <img src={settingsIcon} alt='new chat' style={{ width: '30px' }} />
                             Settings
                     </Typography>
                     </MenuItem>
                     <MenuItem >
-                        <Typography variant="inherit" noWrap>
+                        <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center' }}>
+                            <img src={logoutIcon} alt='new chat' style={{ width: '30px' }} />
                             Log out
                     </Typography>
                     </MenuItem>
@@ -117,6 +133,12 @@ export default function Header() {
                 onClose={() => setShowContact(false)}
             >
             </ContactDialog>
+
+            <RequestDialog
+                open={showRequest}
+                onClose={() => setShowRequest(false)}
+            >
+            </RequestDialog>
         </>
     )
 }

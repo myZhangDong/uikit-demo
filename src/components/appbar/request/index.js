@@ -1,17 +1,18 @@
 import React, { memo } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Avatar, Button, Tabs, Tab, Typography } from '@material-ui/core';
+import { Box, Avatar, Button, Tabs, Tab, Typography, IconButton } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import CommonDialog from '../../common/dialog'
 import i18next from "i18next";
+import ClearIcon from '@material-ui/icons/Clear';
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '580px',
+        width: '620px',
         height: theme.spacing(75),
         backgroundColor: 'rgba(206, 211, 217, .15)',
         boxSizing: 'border-box',
         overflowY: 'auto',
-        flex: '1'
+        flex: '1',
     },
     itemBox: {
         marginBottom: '15px'
@@ -56,16 +57,25 @@ const useStyles = makeStyles((theme) => ({
     },
 
     requestItemBox: {
-        height: theme.spacing(12),
+        height: '102px',
         backgroundColor: '#F7F7F7',
         flex: 1,
-        width: '345px',
+        width: '385px',
         borderRadius: '16px',
         margin: '5px',
         display: 'flex',
         padding: '8px',
         boxSizing: 'border-box',
         position: 'relative'
+    },
+
+    acceptButton: {
+        width: '72px',
+        height: '28px',
+        borderRadius: '17.5px',
+        fontSize: '14px',
+        color: '#fff',
+        marginRight: '10px'
     }
 }))
 
@@ -102,7 +112,7 @@ function RequestItem() {
     const classes = useStyles();
     return (
         <div className={classes.requestItemBox}>
-            <Avatar />
+            <Avatar style={{ width: '50px', height: '50px', marginRight: '11px' }} />
             <div style={{ margin: '0 5px' }}>
                 <div>
                     <div>zd1</div>
@@ -110,11 +120,11 @@ function RequestItem() {
                 </div>
             </div>
             <div style={{ position: 'relative', right: '-72px' }}>now</div>
-            <div style={{ position: 'absolute', bottom: '-0px', right: '5px' }}>
-                <Button>accept</Button>
-                <Button>+</Button>
+            <div style={{ position: 'absolute', bottom: '12px', right: '14px' }}>
+                <Button color="primary" variant="contained" className={classes.acceptButton}>{i18next.t('accept')}</Button>
+                <IconButton style={{ width: '28px', height: '28px' }}><ClearIcon /></IconButton>
             </div>
-        </div>
+        </div >
     )
 }
 
@@ -171,6 +181,7 @@ function Notice(props) {
             onClose={onClose}
             title={i18next.t("Request")}
             content={renderContent()}
+            maxWidth={700}
         ></CommonDialog>
     );
 

@@ -1,6 +1,7 @@
 {
     "translation": {
         "login-Login": "登录",
-        "login-NickName": "昵称"
+        "login-NickName": "昵称",
+        "accept": "接受"
     }
 }
