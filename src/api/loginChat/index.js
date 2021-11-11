@@ -37,6 +37,9 @@ export function postData(url, data) {
         .then(response => response.json())
 }
 
+export function logout() {
+    WebIM.conn.close()
+}
 
 
 export default loginChat;

@@ -24,6 +24,7 @@ import avater3 from '../../assets/avatar3.png'
 import store from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { setMyUserInfo } from '../../redux/actions'
+import { logout } from '../../api/loginChat'
 const AVATARS = [avater1, avater2, avater3]
 export default function Header() {
     const dispatch = useDispatch()
@@ -141,7 +142,7 @@ export default function Header() {
                             Settings
                     </Typography>
                     </MenuItem>
-                    <MenuItem >
+                    <MenuItem onClick={logout}>
                         <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center' }}>
                             <img src={logoutIcon} alt='new chat' style={{ width: '30px' }} />
                             Log out

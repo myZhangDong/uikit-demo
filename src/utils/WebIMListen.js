@@ -6,6 +6,7 @@ import getPublicGroups from '../api/groupChat/getPublicGrooups'
 import { createHashHistory } from 'history'
 import store from '../redux/store'
 import { setRequests, setFetchingStatus } from '../redux/actions'
+import { getToken } from '../api/loginChat'
 const history = createHashHistory()
 const initListen = () => {
     WebIM.conn.listen({
@@ -20,6 +21,7 @@ const initListen = () => {
         },
         onClosed: () => {
             console.log('onClosed>>>');
+            history.push('/login')
         },
         onOnline: (network) => {
             console.log('onOnline>>>', network);
@@ -86,6 +88,18 @@ const initListen = () => {
         }
     })
 
+    WebIM.conn.addEventHandler('TOKENSTATUS', {
+        onTokenWillexpire: () => {
+            let { myUserInfo } = store.getState()
+            getToken(myUserInfo.agoraId, myUserInfo.nickName).then((res) => {
+                const { accessToken } = res
+                WebIM.conn.renewToken(accessToken)
+            })
+        },
+        onTokenExpired: () => {
+            console.error('onTokenExpired')
+        }
+    })
 }
 
 export default initListen;

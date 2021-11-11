@@ -35,8 +35,9 @@ export default function Login() {
             const { accessToken } = res
             console.log(accessToken)
             loginWithToken(values.agoraId, accessToken)
-            store.dispatch(setMyUserInfo({ agoraId: values.divagoraId, nickName: values.nickName }))
+            store.dispatch(setMyUserInfo({ agoraId: values.agoraId, nickName: values.nickName }))
             store.dispatch(setFetchingStatus(true))
+            sessionStorage.setItem('webim_auth', JSON.stringify({ ...values, accessToken }))
         })
     }
 

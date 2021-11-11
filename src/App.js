@@ -5,6 +5,7 @@ import {
 	Switch,
 	Route,
 	withRouter,
+	Redirect,
 	HashRouter
 } from "react-router-dom";
 
@@ -17,12 +18,35 @@ import WebIM, { initIMSDK } from './utils/WebIM'
 import initListen from './utils/WebIMListen'
 import Loading from './components/common/loading'
 import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react';
+import { loginWithToken } from './api/loginChat'
+
 const history = createHashHistory()
 initIMSDK()
 initListen()
-console.log('APPPPP')
+
+const AuthorizedComponent = (props) => {
+	const Component = props.component;
+	const webimAuth = sessionStorage.getItem('webim_auth')
+
+	return webimAuth ? (
+		<Switch>
+			<Redirect to="/main" render={props => <Component {...props} />} />
+		</Switch>
+	) : <Redirect to="/login" />
+}
+
 function App() {
 	const isFetching = useSelector(state => state?.isFetching) || false
+
+	useEffect(() => {
+		const webimAuth = sessionStorage.getItem('webim_auth')
+		if (webimAuth) {
+			let webimAuthObj = JSON.parse(webimAuth)
+			loginWithToken(webimAuthObj.agoraId, webimAuthObj.accessToken)
+		}
+	}, [])
+
 	return (
 		<div className="App">
 			<Loading show={isFetching} />
@@ -30,6 +54,7 @@ function App() {
 				<Switch>
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/main" component={Main} />
+					<Route path="/" render={() => <AuthorizedComponent token={'11'} component={Main} />} />
 				</Switch>
 			</HashRouter>
 		</div>
