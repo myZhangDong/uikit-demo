@@ -7,7 +7,8 @@ import WebIM from '../../../../utils/WebIM'
 import { onChengeGroupAdmin } from '../../../../api/groupChat/groupAdmin'
 import { onChangeGroipMute } from '../../../../api/groupChat/groupMute'
 import { onChangeGroupBlock } from '../../../../api/groupChat/groupBlock'
-import { rmGroupWhiteUser, addGroupWhiteUser  } from '../../../../api/groupChat/groupWhite'
+import { rmGroupWhiteUser, addGroupWhiteUser } from '../../../../api/groupChat/groupWhite'
+import { rmGroupUser } from '../../../../api/groupChat/closeGroup'
 import _ from 'lodash';
 
 
@@ -43,7 +44,6 @@ const MembersList = ({ newMuteList }) => {
     const state = useSelector((state) => state);
     const groupsInfo = state?.groups?.groupsInfo || {}
     const groupAdmins = state?.groups?.groupAdmins || [];
-    const groupBlockList = state?.groups?.groupBlockList || [];
     const groupAllowList = state?.groups?.groupAllowList || [];
     const members = groupsInfo?.affiliations || [];
     const loginUser = WebIM.conn.context?.userId;
@@ -56,7 +56,6 @@ const MembersList = ({ newMuteList }) => {
     const [selectedUser, setSelectedUser] = useState('')
     const handleClick = (event, item) => {
         setAnchorEl(event.currentTarget);
-        console.log('item>>>', item);
         setSelectedUser(item)
     };
     const handleClose = () => {
@@ -117,8 +116,8 @@ const MembersList = ({ newMuteList }) => {
                                     </MenuItem>
                                     <MenuItem>
                                         <Typography variant="inherit" noWrap onClick={() => { onChangeGroupBlock(groupId, selectedUser, 'make') }}>
-                                                {i18next.t('Make to Blocked List')}
-                                            </Typography>
+                                            {i18next.t('Make to Blocked List')}
+                                        </Typography>
                                     </MenuItem>
                                     <MenuItem>
                                         {groupAllowList.includes(selectedUser) ?
@@ -131,7 +130,7 @@ const MembersList = ({ newMuteList }) => {
                                         }
                                     </MenuItem>
                                     <MenuItem>
-                                        <Typography variant="inherit" noWrap>
+                                        <Typography variant="inherit" noWrap onClick={() => rmGroupUser(groupId, selectedUser)}>
                                             {i18next.t('Remove')}
                                         </Typography>
                                     </MenuItem>

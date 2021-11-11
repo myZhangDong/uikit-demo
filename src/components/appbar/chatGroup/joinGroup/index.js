@@ -1,15 +1,9 @@
-
-
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types';
-import CommonDialog from '../../../common/dialog'
+import React, { useState } from 'react'
 import i18next from "i18next";
-import { Box, InputBase, Button } from '@material-ui/core';
+import { Box, InputBase } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import addGroup from '../../../../api/groupChat/addGroup'
-import WebIM from '../../../../utils/WebIM'
-import store from '../../../../redux/store'
 import search_icon from '../../../../assets/search.png'
 
 const useStyles = makeStyles((theme) => {
@@ -68,7 +62,7 @@ const JoinGroup = () => {
         <Box>
             <Box className={classes.searchBox}>
                 <img src={search_icon} alt="" className={classes.searchImg} />
-                <InputBase type="search" placeholder="Search" className={classes.inputSearch} onChange={hangleInputValue} />
+                <InputBase type="search" placeholder={i18next.t('Search')} className={classes.inputSearch} onChange={hangleInputValue} />
             </Box>
             {inputValue.length > 0 && <Box className={classes.joinBox}>
                 <Typography>{`GroupID: ${inputValue}`}</Typography>

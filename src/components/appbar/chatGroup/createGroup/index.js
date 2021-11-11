@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import i18next from "i18next";
 import { Box, TextField, Switch } from '@material-ui/core';
-// import Switch from '@mui/material/Switch';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import SelectGroupMemberDialog from './selectGroupMember'

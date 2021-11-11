@@ -12,9 +12,8 @@ const getGroupInfo = (groupId, type) => {
         groupId: groupId   // 群组id
     };
     WebIM.conn.getGroupInfo(options).then((res) => {
-        console.log('res>>>', res)
         let id = res.data[0].id
-        if (type !== 'block') {
+        if (!type) {
             getGroupNotice(id)
             getGroupAdmins(id)
             getGroupMuted(id)

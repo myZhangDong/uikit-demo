@@ -2,7 +2,8 @@
 
 import WebIM from '../../utils/WebIM'
 import getGroups from './getGroups'
-const closeGroup = (groupId, type, onClose) => {
+import getGroupInfo from '../groupChat/getGroupInfo'
+export const closeGroup = (groupId, type, onClose) => {
     let option = {
         groupId: groupId
     };
@@ -22,4 +23,13 @@ const closeGroup = (groupId, type, onClose) => {
     }
 }
 
-export default closeGroup;
+export const rmGroupUser = (groupId,username) => {
+    let option = {
+        groupId: groupId,
+        username: username,                         // 群组成员名称
+    };
+    WebIM.conn.removeSingleGroupMember(option).then((res)=>{
+        console.log('rmGroupUser success >>>', res);
+        getGroupInfo(groupId,'rmGroupUser')
+    });
+}

@@ -36,7 +36,6 @@ const BlockList = () => {
     const groupBlockList = state?.groups?.groupBlockList
     const handleClick = (event, item) => {
         setAnchorEl(event.currentTarget);
-        console.log('item>>>', item);
         setSelectedUser(item)
     };
     const handleClose = () => {

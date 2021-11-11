@@ -10,7 +10,7 @@ import WebIM from '../../../../utils/WebIM'
 import store from '../../../../redux/store'
 import { TabPanel, a11yProps } from '../../../common/tabs'
 import GroupInfo from './groupInfo'
-import closeGroup from '../../../../api/groupChat/closeGroup'
+import { closeGroup } from '../../../../api/groupChat/closeGroup'
 import groupAvatar from '../../../../assets/groupAvatar.png'
 
 const useStyles = makeStyles((theme) => {

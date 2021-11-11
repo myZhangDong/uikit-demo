@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import i18next from "i18next";
 import { Box, Tabs, Tab } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { TabPanel, a11yProps } from '../../../common/tabs'
 import WebIM from '../../../../utils/WebIM'
