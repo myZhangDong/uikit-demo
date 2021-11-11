@@ -13,7 +13,6 @@ const createGroup = (groupInfo, member, onClose) => {
             inviteNeedConfirm: false         // 邀请加群，被邀请人是否需要确认。true 为需要被邀请者同意才会进群
         },
         success(res) { 
-            console.log('success>>>',res);
             onClose();
         },
         error(err) { },
