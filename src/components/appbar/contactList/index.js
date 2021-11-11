@@ -5,6 +5,8 @@ import _ from 'lodash'
 import { Box, ListItemAvatar, Avatar, ListItem, List, TextField } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux'
+// import { EaseApp } from 'es-uikit'
 const useStyles = makeStyles((theme) => {
     return ({
         root: {
@@ -75,29 +77,26 @@ const useStyles = makeStyles((theme) => {
     })
 });
 
-
 export default function AddressBookDialog(props) {
     const { open, onClose, history, location } = props
     const classes = useStyles();
-    const sessionList = []
+    const constacts = useSelector((state) => state?.constacts) || []
+    let contactsData = constacts.map((user) => {
+        return {
+            name: user,
+            jid: user
+        }
+    })
 
-    let contactsData = [{ name: 'zd1', subscription: 'both', jid: '123' }, { name: 'zd2', subscription: 'both', jid: '123' }, { name: 'azd2', subscription: 'both', jid: '123' }, { name: 'cazd2', subscription: 'both', jid: '123' }, { name: 'cazd1', subscription: 'both', jid: '123' }, { name: 'dzd2', subscription: 'both', jid: '123' }]
     const [contactList, setContactList] = useState([])
 
     const handleClick = (itemData) => {
-        let SessionActions, dispatch
-        if (typeof itemData === 'string') {
-            const index = _.findIndex(sessionList, item => item.sessionId === itemData);
-            if (index < 0) {
-                sessionList.unshift({ sessionId: itemData, sessionType: 'singleChat' })
-                dispatch(SessionActions.setSessionList(sessionList))
-            }
-            dispatch(SessionActions.setCurrentSession(itemData))
-            onClose();
-
-            const redirectPath = '/singleChat/' + [itemData].join('/')
-            history.push(redirectPath + location.search)
-        }
+        // uikit
+        let session = {
+            sessionType: "singleChat",
+            sessionId: itemData,
+        };
+        // EaseApp.onClickSession(session);
     }
 
     const handleChange = (e) => {
@@ -168,7 +167,6 @@ export default function AddressBookDialog(props) {
         )
     }
 
-    // 处理数据格式，及获取分组高度
     function getBrands(members) {
         const reg = /[a-z]/i;
         members.forEach((item) => {
@@ -214,28 +212,9 @@ export default function AddressBookDialog(props) {
         return someArr
     }
 
-    function getRoster() {
-        let WebIM = {}
-        WebIM.conn.getRoster({
-            success: (roster) => {
-                let member = [];
-                for (let i = 0; i < roster.length; i++) {
-                    if (roster[i].subscription === "both") {
-                        member.push(roster[i]);
-                    }
-                }
-                contactsData = member
-                let contacts = getBrands(member)
-                setContactList(contacts)
-            }
-        })
-    }
-
     useEffect(() => {
-        let list = getBrands([{ name: 'zd1', subscription: 'both', jid: '123' }, { name: 'zd2', subscription: 'both', jid: '123' }, { name: 'azd2', subscription: 'both', jid: '123' }, { name: 'cazd2', subscription: 'both', jid: '123' }, { name: 'cazd1', subscription: 'both', jid: '123' }, { name: 'dzd2', subscription: 'both', jid: '123' }])
-        console.log(list)
+        let list = getBrands(contactsData)
         setContactList(list)
-        // getRoster()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

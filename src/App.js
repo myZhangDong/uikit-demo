@@ -12,8 +12,13 @@ import { createHashHistory } from 'history'
 
 import Login from './layout/login'
 import Main from './layout/main'
-const history = createHashHistory()
 
+import WebIM, { initIMSDK } from './utils/WebIM'
+import initListen from './utils/WebIMListen'
+const history = createHashHistory()
+initIMSDK()
+initListen()
+console.log('APPPPP')
 function App() {
 	return (
 		<div className="App">

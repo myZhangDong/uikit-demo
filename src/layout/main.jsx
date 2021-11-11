@@ -1,12 +1,13 @@
 import React from 'react';
 import Header from '../components/appbar'
 import './login.css'
-export default function Main() {
+// import { EaseChat } from 'es-uikit'
+// import WebIM from '../utils/WebIM'
 
+export default function Main() {
     return (
         <div className='main-container'>
             <Header />
-            main
         </div>
     )
 }

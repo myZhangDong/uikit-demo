@@ -11,6 +11,14 @@ let defaultState = {
         groupBlockList:[],
         groupAllowList:[],
         groupNotices: '',
+	},
+    sessionList: [],
+    requests: { group: [{ name: 'zdzd', group: '123456', status: 'pedding', time: '', type: 'apply' }], contact: [{ name: 'zdzd', status: 'pedding', time: '' }] },
+    blackList: [],
+    myUserInfo: {
+        agoraId: null,
+        nickName: null,
+        avatarIndex: null
     }
 };
 
@@ -95,9 +103,56 @@ const reducer = (state = defaultState, action) => {
                     groupNotices: data
                 }
             }
+        case 'SET_SESSION_LIST':
+            return {
+                ...state,
+                sessionList: data
+            }
+        case 'SET_REQUESTS':
+            return {
+                ...state,
+                requests: data
+            }
+        case 'UPDATE_REQUEST_STATUS':
+            let requests = state.requests
+            let newRequests = {}
+            if (data.type === 'contact') {
+                let updatedReq = requests.contact.map(value => {
+                    if (value.name === data.name) {
+                        value.status = data.status
+                    }
+                    return value
+                })
+                newRequests = { ...requests, contact: updatedReq }
+            } else {
+                let updatedReq = requests.group.map(value => {
+                    if (value.name === data.name) {
+                        value.status = data.status
+                    }
+                    return value
+                })
+                newRequests = { ...requests, group: updatedReq }
+            }
+            debugger
+            return {
+                ...state,
+                requests: newRequests
+            }
+        case 'SET_MY_USER_INFO':
+            let myUserInfo = { state }
+            return {
+                ...state,
+                myUserInfo: { myUserInfo, ...data }
+            }
+        case 'SET_BLACK_LIST':
+            return {
+                ...state,
+                blackList: data
+            }
         default:
             break;
     }
 }
 
 export default reducer;
+

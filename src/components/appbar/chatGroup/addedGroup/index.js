@@ -15,24 +15,24 @@ import search_icon from '../../../../assets/search.png'
 const useStyles = makeStyles((theme) => {
     return ({
         root: {
-            height:'100%',
-            width:'100%'
+            height: '100%',
+            width: '100%'
         },
-        inputBox:{
-            display:'flex',
-            alignItems:'center',
-            background:'#F4F5F7',
-            borderRadius:'23px',
-            height:'36px',
-            lineHeight:'36px',
+        inputBox: {
+            display: 'flex',
+            alignItems: 'center',
+            background: '#F4F5F7',
+            borderRadius: '23px',
+            height: '36px',
+            lineHeight: '36px',
         },
-        inputSearch:{
-            width:'100%',
-            height:'22px',
-            fontSize:'16px',
+        inputSearch: {
+            width: '100%',
+            height: '22px',
+            fontSize: '16px',
             lineHeight: '22px',
             cursor: 'pointer',
-            padding:'6px 5px 7px 0'
+            padding: '6px 5px 7px 0'
         },
         searchImg: {
             width: '18px',
@@ -107,6 +107,7 @@ const AddedGroups = () => {
                         )
                     })}
                 </Box>
+
             </Box>
             <GroupSettingsDialog
                 open={showGroupSettings}

@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 // import { useDispatch } from 'react-redux'
 // import RosterActions from '@/redux/roster'
-// import { message } from '@/components/common/Alert'
+import { message } from '../../common/alert'
+import { addContact } from '../../../api/contactsChat/getContacts'
 const useStyles = makeStyles((theme) => {
     return ({
         root: {
@@ -39,8 +40,8 @@ export default function AddfriendDialog({ open, onClose }) {
         if (!inputValue) {
             return setError(true)
         }
-        //dispatch(RosterActions.addContact(inputValue))
-        // message.success(i18next.t('Successfully send the application'))
+        addContact(inputValue, 'hi')
+        message.success(i18next.t('Successfully send the application'))
         setInputValue('')
         setError(null)
         onClose()
