@@ -5,7 +5,7 @@ import getGroups from '../api/groupChat/getGroups'
 import getPublicGroups from '../api/groupChat/getPublicGrooups'
 import { createHashHistory } from 'history'
 import store from '../redux/store'
-import { setRequests } from '../redux/actions'
+import { setRequests, setFetchingStatus } from '../redux/actions'
 const history = createHashHistory()
 const initListen = () => {
     WebIM.conn.listen({
@@ -16,20 +16,7 @@ const initListen = () => {
             getPublicGroups();
             getBlackList()
             history.push('/main')
-
-            let msg = new WebIM.message('txt');
-            msg.set({
-                msg: 'message content',                  // 消息内容
-                to: 'zd1',                          // 接收消息对象（用户id）
-                chatType: 'singleChat',
-                success: function (id, serverMsgId) {
-                    console.log('send private text Success');
-                },
-                fail: function (e) {
-                    console.log("Send private text error");
-                }
-            });
-            WebIM.conn.send(msg.body)
+            store.dispatch(setFetchingStatus(false))
         },
         onClosed: () => {
             console.log('onClosed>>>');

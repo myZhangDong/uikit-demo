@@ -6,7 +6,7 @@ import { getToken, loginWithToken } from '../api/loginChat'
 // import { useHistory } from 'react-router-dom'
 
 import store from '../redux/store'
-import { setMyUserInfo } from '../redux/actions'
+import { setMyUserInfo, setFetchingStatus } from '../redux/actions'
 
 export default function Login() {
     // const history = useHistory()
@@ -36,6 +36,7 @@ export default function Login() {
             console.log(accessToken)
             loginWithToken(values.agoraId, accessToken)
             store.dispatch(setMyUserInfo({ agoraId: values.divagoraId, nickName: values.nickName }))
+            store.dispatch(setFetchingStatus(true))
         })
     }
 

@@ -55,3 +55,8 @@ export const setRequests = (data) => {
 export const updateRequestStatus = (data) => {
     return { type: 'UPDATE_REQUEST_STATUS', data };
 }
+
+// Whether show loading
+export const setFetchingStatus = (data) => {
+    return { type: 'SET_FETCHING_STATUS', data };
+}

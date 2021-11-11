@@ -2,16 +2,16 @@ import _ from 'lodash'
 
 let defaultState = {
     constacts: [],
-    groups:{
+    groups: {
         groupList: [],
         publicGroups: [],
         groupsInfo: [],
         groupAdmins: [],
-        groupMuteList:[],
-        groupBlockList:[],
-        groupAllowList:[],
+        groupMuteList: [],
+        groupBlockList: [],
+        groupAllowList: [],
         groupNotices: '',
-	},
+    },
     sessionList: [],
     requests: { group: [{ name: 'zdzd', group: '123456', status: 'pedding', time: '', type: 'apply' }], contact: [{ name: 'zdzd', status: 'pedding', time: '' }] },
     blackList: [],
@@ -19,7 +19,8 @@ let defaultState = {
         agoraId: null,
         nickName: null,
         avatarIndex: null
-    }
+    },
+    isFetching: false
 };
 
 const reducer = (state = defaultState, action) => {
@@ -42,11 +43,11 @@ const reducer = (state = defaultState, action) => {
         case 'PUBLIC_GROUPS_ACITON':
             return {
                 ...state,
-                groups:{
+                groups: {
                     ...state.groups,
                     publicGroups: data
                 }
-               
+
             }
         case 'GROUPS_INFO_ACITON':
             return {
@@ -57,7 +58,7 @@ const reducer = (state = defaultState, action) => {
                 }
             }
         case 'GROUP_ADMINS_ACITON':
-            return{
+            return {
                 ...state,
                 groups: {
                     ...state.groups,
@@ -72,7 +73,7 @@ const reducer = (state = defaultState, action) => {
             } else if (muteType === 'move') {
                 newMuteList = data
             }
-            return{
+            return {
                 ...state,
                 groups: {
                     ...state.groups,
@@ -148,6 +149,11 @@ const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 blackList: data
+            }
+        case 'SET_FETCHING_STATUS':
+            return {
+                ...state,
+                isFetching: data
             }
         default:
             break;
