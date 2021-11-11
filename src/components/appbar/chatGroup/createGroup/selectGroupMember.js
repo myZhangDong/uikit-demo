@@ -123,16 +123,13 @@ const SelectGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
             setGroupMembers(groupMembers);
         }
         setChecked(newChecked);
-        console.log('newChecked>>>', newChecked);
     };
 
     const handleCheckedGroupMember = () => {
-        console.log('contacts>>>', contacts);
         setChecked(checked, contacts);
     };
 
     const handleCheckedContacts = () => {
-        console.log('contacts>>>', contacts);
         setChecked(checked, groupMembers);
     };
 

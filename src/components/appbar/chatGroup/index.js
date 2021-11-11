@@ -5,6 +5,7 @@ import CommonDialog from '../../common/dialog'
 import { useSelector } from 'react-redux'
 import i18next from "i18next";
 import { Box, Tabs, Tab } from '@material-ui/core';
+import { TabPanel, a11yProps} from '../../common/tabs'
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import store from '../../../redux/store';
@@ -29,7 +30,8 @@ const useStyles = makeStyles((theme) => {
             color: '#000000',
             fontSize: '14px',
             fontWeight: 'Medium(500)',
-            typeface: 'Ping Fang SC'
+            typeface: 'Ping Fang SC',
+            textTransform: ' none',
         },
         content: {
             background: '#EDEFF2',
@@ -39,43 +41,10 @@ const useStyles = makeStyles((theme) => {
     })
 });
 
-
-const TabPanel = (props) => {
-    const { children, value, index, ...other } = props;
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-};
-
-const a11yProps = (index) => {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
-
 const ChatGroupDialog = ({ open, onClose }) => {
     const classes = useStyles();
     const state = useSelector((state) => state);
-    const groupList = state?.groupList || [];
+    const groupList = state?.groups?.groupList || [];
     const [value, setValue] = useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);

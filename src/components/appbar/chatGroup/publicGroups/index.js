@@ -101,8 +101,8 @@ const PublicGroup = () => {
     const classes = useStyles();
     // const state = store.getState();
     const state = useSelector((state) => state);
-    const addedGroups = state?.groupList;
-    const pulicGroupsList = state?.publicGroups;
+    const addedGroups = state?.groups?.groupList;
+    const pulicGroupsList = state?.groups?.publicGroups;
     const [addedGroupsId, setAddedGroupsId] = useState([])
     useEffect(() => {   
         let groupArr = []

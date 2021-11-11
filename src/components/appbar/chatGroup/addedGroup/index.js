@@ -1,12 +1,14 @@
 
-import React from 'react'
+import React,{useState} from 'react'
 import { useSelector } from 'react-redux'
 import i18next from "i18next";
-import { Box, InputBase, Button } from '@material-ui/core';
+import { Box, InputBase, List, ListItem, ListItemText, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import WebIM from '../../../../utils/WebIM'
 import store from '../../../../redux/store'
+import GroupSettingsDialog from '../groupSettings'
+import getGroupInfo from '../../../../api/groupChat/getGroupInfo'
 import search_icon from '../../../../assets/search.png'
 
 
@@ -45,14 +47,14 @@ const useStyles = makeStyles((theme) => {
         },
         gInfoBox:{
             display:'flex',
-            alignItems:'center'
+            alignItems:'center',
+            cursor: 'pointer',
         },
         gAvatar: {
             width: '40px',
             height: '40px',
             borderRadius: '20px',
             backgroundColor: '#FF9F4D',
-            cursor: 'pointer',
         },
         gName: {
             borderRadius: '16px',
@@ -64,7 +66,7 @@ const useStyles = makeStyles((theme) => {
             fontSize: '16px',
             Character: 0,
             color: '#0D0D0D',
-            cursor: 'pointer',
+            
             height: '48px',
             lineHeight: '48px'
         }
@@ -75,28 +77,45 @@ const useStyles = makeStyles((theme) => {
 const AddedGroups = () => {
     const classes = useStyles();
     const state = useSelector((state) => state);
-    // const state = store.getState();
-    const groupList = state?.groupList || [];
+    const groupList = state?.groups?.groupList || [];
+
+    const [showGroupSettings, setshowGroupSettings] = useState(false)
+    const [currentGroupId, setCurrentGroupId] = useState('')
+
+    const handleGroupSetting = (groupid) => {
+        getGroupInfo(groupid)
+        setshowGroupSettings(true)
+        setCurrentGroupId(groupid)
+    }
     return (
-        <Box className={classes.root}>
-            <Box className={classes.inputBox}>
-                <img src={search_icon} alt="" className={classes.searchImg} />
-                <InputBase type="search" placeholder="Search" className={classes.inputSearch} />
+        <>
+            <Box className={classes.root}>
+                <Box className={classes.inputBox}>
+                    <img src={search_icon} alt="" className={classes.searchImg} />
+                    <InputBase type="search" placeholder="Search" className={classes.inputSearch} />
+                </Box>
+                <Box className={classes.gItem}>
+                    {groupList.length > 0 && groupList.map((item, key) => {
+                        return (
+                            <List className={classes.gInfoBox} onClick={() => handleGroupSetting(item.groupid)} key={key}>
+                                <Box className={classes.gAvatar}></Box>
+                                <Box className={classes.gName}>
+                                    <Typography className={classes.gNameText}>{item.groupname}</Typography>
+                                </Box>
+                            </List>
+
+                        )
+                    })}
+                </Box>
             </Box>
-            <Box className={classes.gItem}>
-                {groupList.length > 0 && groupList.map((item, key) => {
-                    return (
-                        <Box className={classes.gInfoBox}>
-                            <Box className={classes.gAvatar}></Box>
-                            <Box key={key} className={classes.gName}>
-                                <Typography className={classes.gNameText}>{item.groupname}</Typography>
-                            </Box>
-                        </Box>
-                        
-                    )
-                })}
-            </Box>
-        </Box>
+            <GroupSettingsDialog
+                open={showGroupSettings}
+                onClose={() => setshowGroupSettings(false)}
+                currentGroupId={currentGroupId}
+                >
+            </GroupSettingsDialog>
+        </>
+        
 
     )
 }
