@@ -291,13 +291,13 @@ export default function Setting({ open, onClose }) {
                     onClose={() => setAddEl(null)}
                 >
                     <MenuItem onClick={unblockContact.bind(this, addEl)}>
-                        <Typography variant="inherit" noWrap style={{ display: 'flex', 'align-items': 'center' }}>
+                        <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center' }}>
                             <RemoveCircleOutlineIcon style={{ width: '30px', height: '30px', marginRight: '8px' }} />
                             Unblock
                         </Typography>
                     </MenuItem>
                     <MenuItem onClick={deleteContact.bind(this, addEl)}>
-                        <Typography variant="inherit" noWrap style={{ display: 'flex', 'align-items': 'center', color: '#FF14CC' }}>
+                        <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center', color: '#FF14CC' }}>
                             <img src={deleteContactIcon} alt='deleteContact' style={{ width: '30px', height: '30px', marginRight: '8px' }} />
                             Delete Contact
                         </Typography>

@@ -38,6 +38,9 @@ export const deleteContact = (userId) => {
 export const acceptContactRequest = (userId) => {
     WebIM.conn.acceptInvitation(userId)
     store.dispatch(updateRequestStatus({ type: 'contact', name: userId, status: 'accepted' }))
+    let { constacts } = store.getState()
+    let newContacts = [...constacts, userId]
+    store.dispatch(contactsAciton(newContacts))
 }
 
 export const declineContactRequest = (userId) => {

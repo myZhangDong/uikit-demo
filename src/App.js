@@ -39,13 +39,6 @@ const AuthorizedComponent = (props) => {
 function App() {
 	const isFetching = useSelector(state => state?.isFetching) || false
 
-	useEffect(() => {
-		const webimAuth = sessionStorage.getItem('webim_auth')
-		if (webimAuth) {
-			let webimAuthObj = JSON.parse(webimAuth)
-			loginWithToken(webimAuthObj.agoraId, webimAuthObj.accessToken)
-		}
-	}, [])
 
 	return (
 		<div className="App">
