@@ -22,7 +22,7 @@ import { useEffect } from 'react';
 import { loginWithToken } from './api/loginChat'
 
 const history = createHashHistory()
-initIMSDK()
+// initIMSDK()
 initListen()
 
 const AuthorizedComponent = (props) => {

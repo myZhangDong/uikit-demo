@@ -8,7 +8,6 @@ const getContacts = () => {
 }
 
 export const addContact = (userId, message) => {
-    debugger
     WebIM.conn.addContact(userId, message);
 }
 

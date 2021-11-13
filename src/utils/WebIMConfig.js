@@ -36,7 +36,6 @@ var config = {
      * @parameter {Boolean} true or false
      */
     https: true,
-
     /*
      * 公有云配置默认为 true，
      * 私有云配置请设置 isHttpDNS = false , 详细文档：http://docs-im.easemob.com/im/web/other/privatedeploy
@@ -72,12 +71,12 @@ var config = {
      * true: Using the API provided by SDK to upload file to huanxin server
      * false: Using your method to upload file to your own server
      */
-    useOwnUploadFun: false,
+    // useOwnUploadFun: false,
 
     /*
      * Set to auto sign-in
      */
-    isAutoLogin: false,
+    isAutoLogin: true,
     /**
      * Size of message cache for person to person
      */
