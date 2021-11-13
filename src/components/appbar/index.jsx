@@ -25,6 +25,9 @@ import store from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { setMyUserInfo } from '../../redux/actions'
 import { logout } from '../../api/loginChat'
+
+import UserInfoPopover from './userInfo'
+
 const AVATARS = [avater1, avater2, avater3]
 export default function Header() {
     const dispatch = useDispatch()
@@ -35,6 +38,10 @@ export default function Header() {
     const [showUserSetting, setShowUserSetting] = useState(false)
     const [showContact, setShowContact] = useState(false)
     const [showRequest, setShowRequest] = useState(false)
+
+    // userInfo
+    const [showUserInfoPopover, setShowUserInfoPopover] = useState(false)
+    const [userInfoaddEl, setUserInfoAddEl] = useState(null)
 
     const myUserInfo = useSelector(state => state?.myUserInfo)
     const requests = useSelector(state => state?.requests) || {}
@@ -95,11 +102,21 @@ export default function Header() {
         setShowChatGroup(false);
     }
 
+    // TODO userInfo 
+    const handleUserInfo = (e) => {
+        setUserInfoAddEl(e.currentTarget)
+        setShowUserInfoPopover(true);
+    }
+    // 关闭群组创建选择 member
+    const handleUserInfoClose = () => {
+        setShowUserInfoPopover(false);
+    }
+
     return (
         <>
             <div className='chatlist-header'>
                 {/* <div className='chatlist-header-avatar'></div> */}
-                <Avatar style={{ width: 40, height: 40 }} src={avatarUrl}></Avatar>
+                <Avatar style={{ width: 40, height: 40 }} src={avatarUrl} onClick={handleUserInfo}></Avatar>
                 <div className='chatlist-header-title'>AgoraChat</div>
                 <div className='chatlist-header-more' onClick={handleClickMore}>...</div>
 
@@ -176,6 +193,12 @@ export default function Header() {
                 onClose={() => setShowRequest(false)}
             >
             </RequestDialog>
+
+            <UserInfoPopover 
+                open={showUserInfoPopover}
+                anchorEl={userInfoaddEl}
+                onClose={handleUserInfoClose}
+            />
         </>
     )
 }

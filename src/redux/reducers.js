@@ -134,7 +134,6 @@ const reducer = (state = defaultState, action) => {
                 })
                 newRequests = { ...requests, group: updatedReq }
             }
-            debugger
             return {
                 ...state,
                 requests: newRequests

@@ -40,7 +40,7 @@ const GroupInfo = () => {
     const state = useSelector((state) => state);
     const groupsInfo = state?.groups?.groupsInfo || {}
     const groupAdmins = state?.groups?.groupAdmins || [];
-    const groupMuteList = state?.groups?.groupMuteList || []
+    const groupMuteList = state?.groups?.groupMuteList || [];
     const loginUser = WebIM.conn.context?.userId
     const isAdmins = loginUser === groupsInfo?.owner || groupAdmins.includes(loginUser)
     const [newMuteList, setNewMuteList] = useState([])
@@ -55,7 +55,7 @@ const GroupInfo = () => {
             aryMute.push(item.user)
         })
         setNewMuteList(aryMute)
-    }, [groupMuteList])
+    }, [groupMuteList.length])
 
     return (
         <Box className={classes.root}>

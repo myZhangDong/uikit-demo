@@ -73,7 +73,7 @@ const MembersList = ({ newMuteList }) => {
             }
             setNewMembers(_.concat(_owner, _member))
         });
-    }, [members]);
+    }, [members.length]);
 
     return (
         <Box>
