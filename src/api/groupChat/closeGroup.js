@@ -14,7 +14,7 @@ export const closeGroup = (groupId, type, onClose) => {
             getGroups()
             onClose && onClose()
         })
-    }else if(type === "quit"){
+    } else if (type === "quit") {
         WebIM.conn.quitGroup(option).then((res) => {
             console.log(res)
             getGroups()
@@ -23,13 +23,13 @@ export const closeGroup = (groupId, type, onClose) => {
     }
 }
 
-export const rmGroupUser = (groupId,username) => {
+export const rmGroupUser = (groupId, username) => {
     let option = {
         groupId: groupId,
         username: username,                         // 群组成员名称
     };
-    WebIM.conn.removeSingleGroupMember(option).then((res)=>{
+    WebIM.conn.removeSingleGroupMember(option).then((res) => {
         console.log('rmGroupUser success >>>', res);
-        getGroupInfo(groupId,'rmGroupUser')
+        getGroupInfo(groupId, 'rmGroupUser')
     });
 }

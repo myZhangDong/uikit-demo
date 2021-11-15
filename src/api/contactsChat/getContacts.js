@@ -1,6 +1,7 @@
 import WebIM from '../../utils/WebIM'
 import store from '../../redux/store'
 import { contactsAciton, setBlackList, updateRequestStatus } from '../../redux/actions'
+
 const getContacts = () => {
     console.log('开始拉取联系人')
     WebIM.conn.getRoster().then((res) => {

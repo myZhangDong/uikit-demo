@@ -6,7 +6,7 @@ import { Box, ListItemAvatar, Avatar, ListItem, List, TextField } from '@materia
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux'
-// import { EaseApp } from 'es-uikit'
+import { EaseApp } from 'es-uikit'
 import store from '../../../redux/store'
 const useStyles = makeStyles((theme) => {
     return ({
@@ -97,7 +97,9 @@ function AddressBookDialog(props) {
             sessionType: "singleChat",
             sessionId: itemData,
         };
-        // EaseApp.onClickSession(session);
+        console.log('session', session)
+        EaseApp.onClickSession(session);
+        onClose()
     }
 
     const handleChange = (e) => {

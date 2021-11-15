@@ -12,7 +12,7 @@ const createGroup = (groupInfo, member, onClose) => {
             allowinvites: groupInviteChecker,      // true：允许群成员邀请人加入此群，false：只有群主才可以往群里加人 注意公开群（public：true),则不允许群成员邀请别人加入此群
             inviteNeedConfirm: false         // 邀请加群，被邀请人是否需要确认。true 为需要被邀请者同意才会进群
         },
-        success(res) { 
+        success(res) {
             onClose();
         },
         error(err) { },

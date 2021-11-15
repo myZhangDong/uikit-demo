@@ -32,15 +32,15 @@ const initListen = () => {
         onError: (err) => {
             console.log('onError>>>', err);
         },
-        onTextMessage: (message) => {
-            console.log('onTextMessage>>>', message);
-        },
-        onPictureMessage: (message) => {
-            console.log('onPictureMessage>>>', message);
-        },
-        onCmdMessage: (message) => {
-            console.log('onCmdMessaeg>>>', message);
-        },
+        // onTextMessage: (message) => {
+        //     console.log('onTextMessage>>>', message);
+        // },
+        // onPictureMessage: (message) => {
+        //     console.log('onPictureMessage>>>', message);
+        // },
+        // onCmdMessage: (message) => {
+        //     console.log('onCmdMessaeg>>>', message);
+        // },
         onPresence: (message) => {
             console.log('onPresence>>>', message);
             const { type } = message;
