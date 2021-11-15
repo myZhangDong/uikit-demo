@@ -100,6 +100,23 @@ const initListen = () => {
             console.error('onTokenExpired')
         }
     })
+
+    WebIM.conn.addEventHandler('TOKENSTATUS', {
+        onTokenWillexpire: () => {
+            let { myUserInfo } = store.getState()
+            getToken(myUserInfo.agoraId, myUserInfo.nickName).then((res) => {
+                const { accessToken } = res
+                WebIM.conn.renewToken(accessToken)
+            })
+        },
+        onTokenExpired: () => {
+            console.error('onTokenExpired')
+        },
+        onConnected: () => {
+            console.log('onConnected')
+        }
+    })
+
 }
 
 export default initListen;

@@ -18,6 +18,8 @@ import CheckIcon from '@material-ui/icons/Check';
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setMyUserInfo } from '../../../redux/actions'
+import store from '../../../redux/store'
+
 import { removeFromBlackList, deleteContact } from '../../../api/contactsChat/getContacts'
 const useStyles = makeStyles((theme) => {
     return {
@@ -173,7 +175,7 @@ export default function Setting({ open, onClose }) {
 
     const handleCheckAvatar = (index) => {
         setAvatarIndex(index)
-        dispatch(setMyUserInfo({
+        store.dispatch(setMyUserInfo({
             ...myUserInfo,
             avatarIndex: index
         }))

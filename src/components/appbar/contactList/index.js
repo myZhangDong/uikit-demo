@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux'
 // import { EaseApp } from 'es-uikit'
+import store from '../../../redux/store'
 const useStyles = makeStyles((theme) => {
     return ({
         root: {
@@ -80,7 +81,8 @@ const useStyles = makeStyles((theme) => {
 export default function AddressBookDialog(props) {
     const { open, onClose, history, location } = props
     const classes = useStyles();
-    const constacts = useSelector((state) => state?.constacts) || []
+    const state = store.getState()
+    const constacts = state?.constacts || []// useSelector((state) => state.constacts) || []
     let contactsData = constacts.map((user) => {
         return {
             name: user,
@@ -89,7 +91,6 @@ export default function AddressBookDialog(props) {
     })
 
     const [contactList, setContactList] = useState([])
-
     const handleClick = (itemData) => {
         // uikit
         let session = {
@@ -216,7 +217,7 @@ export default function AddressBookDialog(props) {
         let list = getBrands(contactsData)
         setContactList(list)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [constacts])
 
     return (
         <CommonDialog

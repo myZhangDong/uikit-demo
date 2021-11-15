@@ -139,10 +139,10 @@ const reducer = (state = defaultState, action) => {
                 requests: newRequests
             }
         case 'SET_MY_USER_INFO':
-            let myUserInfo = { state }
+            let { myUserInfo } = state
             return {
                 ...state,
-                myUserInfo: { myUserInfo, ...data }
+                myUserInfo: { ...myUserInfo, ...data }
             }
         case 'SET_BLACK_LIST':
             return {

@@ -42,9 +42,9 @@ export default function Header() {
     // userInfo
     const [showUserInfoPopover, setShowUserInfoPopover] = useState(false)
     const [userInfoaddEl, setUserInfoAddEl] = useState(null)
-
-    const myUserInfo = useSelector(state => state?.myUserInfo)
-    const requests = useSelector(state => state?.requests) || {}
+    let state = store.getState()
+    let myUserInfo = state?.myUserInfo
+    let requests = state?.requests || {}
     let unDealRequestsNum = countNum(requests.group) + countNum(requests.contact)
     function countNum(arr) {
         if (!Array.isArray(arr)) return 0
@@ -61,7 +61,9 @@ export default function Header() {
     if (myUserInfo && myUserInfo.avatarIndex !== null) {
         avatarUrl = AVATARS[myUserInfo.avatarIndex]
     }
+    console.log('myUserInfo', myUserInfo)
     useEffect(() => {
+        console.log('useEffect')
         // initIMSDK();
         // initListen();
         setAvatar()
@@ -72,6 +74,7 @@ export default function Header() {
     //         loginChat()
     //     }
     // }, [WebIM])
+
 
     function setAvatar() {
         let avatarIndex = localStorage.getItem('avatarIndex')
@@ -194,7 +197,7 @@ export default function Header() {
             >
             </RequestDialog>
 
-            <UserInfoPopover 
+            <UserInfoPopover
                 open={showUserInfoPopover}
                 anchorEl={userInfoaddEl}
                 onClose={handleUserInfoClose}

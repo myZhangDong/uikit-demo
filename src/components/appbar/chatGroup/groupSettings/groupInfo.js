@@ -14,8 +14,8 @@ import AllowList from './allowList'
 
 const useStyles = makeStyles((theme) => {
     return ({
-        root:{
-            padding:'0'
+        root: {
+            padding: '0'
         },
         gUserBox: {
             height: '585px',
@@ -78,7 +78,7 @@ const GroupInfo = () => {
                 <AdminList />
             </TabPanel>
             <TabPanel value={value} index={2} className={classes.gUserBox}>
-                <MuteList newMuteList={newMuteList} className={classes.gUserBox}/>
+                <MuteList newMuteList={newMuteList} className={classes.gUserBox} />
             </TabPanel>
             <TabPanel value={value} index={3} className={classes.gUserBox}>
                 <BlockList />

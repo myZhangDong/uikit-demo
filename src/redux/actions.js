@@ -38,6 +38,7 @@ export const groupsNoticeAction = (data) => {
 }
 // set user info
 export const setMyUserInfo = (data) => {
+    console.log('setMyUserInfo --', data)
     return { type: 'SET_MY_USER_INFO', data };
 }
 

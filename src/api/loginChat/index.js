@@ -14,6 +14,7 @@ export const getToken = (agoraId, nickName) => {
 }
 
 export const loginWithToken = (agoraId, agoraToken) => {
+    console.log('1234', agoraId, agoraToken)
     let options = {
         user: agoraId,
         agoraToken: agoraToken
