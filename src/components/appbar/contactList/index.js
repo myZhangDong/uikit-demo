@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import CommonDialog from '../../common/dialog'
 import i18next from "i18next";
 import _ from 'lodash'
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => {
     })
 });
 
-export default function AddressBookDialog(props) {
+function AddressBookDialog(props) {
     const { open, onClose, history, location } = props
     const classes = useStyles();
     const state = store.getState()
@@ -216,8 +216,9 @@ export default function AddressBookDialog(props) {
     useEffect(() => {
         let list = getBrands(contactsData)
         setContactList(list)
+        console.log('constacts+++', constacts)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [constacts])
+    }, [constacts.length])
 
     return (
         <CommonDialog
@@ -228,3 +229,5 @@ export default function AddressBookDialog(props) {
         ></CommonDialog>
     )
 }
+
+export default memo(AddressBookDialog)
