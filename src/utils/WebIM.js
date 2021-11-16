@@ -1,12 +1,8 @@
 
 
-import websdk from 'easemob-websdk';
-import config from './WebIMConfig';
 import { EaseApp } from 'es-uikit'
 
-console.log(' +++ EaseApp +++', EaseApp)
 const WebIM = EaseApp.getSdk({ appkey: '61308276#489779' })
-console.log('++ WebIM ++', WebIM)
 // let WebIM = window.WebIM || {};
 
 // WebIM.config = config;

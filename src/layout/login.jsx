@@ -47,7 +47,6 @@ export default function Login() {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    const [buttonText, setButtonText] = useState(i18next.t('login-Login'))
     return (
         <div className='login-container'>
             <div className='login-form'>
@@ -58,7 +57,7 @@ export default function Login() {
                 </div> : null}
                 <input className='login-form-input' placeholder='AgoraID' onChange={handleChange('agoraId')}></input>
                 <input className='login-form-input' placeholder={i18next.t('login-NickName')} onChange={handleChange('nickName')}></input>
-                <input type='button' className='login-form-input button' value={buttonText} onClick={login} />
+                <input type='button' className='login-form-input button' value={i18next.t('login-Login')} onClick={login} />
             </div>
             <div className='login-copyright'>
                 © 2021 Agora

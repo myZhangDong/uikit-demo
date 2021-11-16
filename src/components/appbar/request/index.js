@@ -1,11 +1,10 @@
 import React, { memo } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Avatar, Button, Tabs, Tab, Typography, IconButton } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import CommonDialog from '../../common/dialog'
 import i18next from "i18next";
 import ClearIcon from '@material-ui/icons/Clear';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { acceptContactRequest, declineContactRequest } from '../../../api/contactsChat/getContacts'
 import { acceptGroupRequest, declineGroupRequest } from '../../../api/groupChat/groupRequest'
 const useStyles = makeStyles((theme) => ({
@@ -91,7 +90,6 @@ function a11yProps(index) {
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-
     return (
         <div
             role="tabpanel"
@@ -164,7 +162,7 @@ function Notice(props) {
     const [value, setValue] = React.useState(0);
     const requests = useSelector(state => state?.requests) || { contact: [], group: [] }
 
-    const { open, onClose, history, location } = props
+    const { open, onClose } = props
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -215,7 +213,7 @@ function Notice(props) {
             maxWidth={700}
         ></CommonDialog>
     );
-
 }
 
 export default memo(Notice)
+

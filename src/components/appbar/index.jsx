@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import './index.css'
 
-import { Menu, MenuItem, Typography, Badge, Avatar } from '@material-ui/core';
+import { Menu, MenuItem, Typography, Avatar } from '@material-ui/core';
 import AddFriendDialog from './addFriend'
 import ChatGroupDialog from './chatGroup'
 import SettingsDialog from './settings'
-import WebIM, { initIMSDK } from '../../utils/WebIM'
-import initListen from '../../utils/WebIMListen'
-import loginChat from '../../api/loginChat/index.js'
 import ContactDialog from './contactList'
 import RequestDialog from './request'
 
@@ -22,7 +19,6 @@ import avater1 from '../../assets/avatar1.png'
 import avater2 from '../../assets/avatar2.png'
 import avater3 from '../../assets/avatar3.png'
 import store from '../../redux/store'
-import { useSelector, useDispatch } from 'react-redux'
 import { setMyUserInfo } from '../../redux/actions'
 import { logout } from '../../api/loginChat'
 
@@ -30,9 +26,7 @@ import UserInfoPopover from './userInfo'
 
 const AVATARS = [avater1, avater2, avater3]
 export default function Header() {
-    const dispatch = useDispatch()
     const [addEl, setAddEl] = useState(null)
-
     const [showAddFriend, setShowAddFriend] = useState(false)
     const [showChatGroup, setShowChatGroup] = useState(false);
     const [showUserSetting, setShowUserSetting] = useState(false)
@@ -61,23 +55,15 @@ export default function Header() {
     if (myUserInfo && myUserInfo.avatarIndex !== null) {
         avatarUrl = AVATARS[myUserInfo.avatarIndex]
     }
-    console.log('myUserInfo', myUserInfo)
     useEffect(() => {
-        console.log('useEffect')
-        // initIMSDK();
-        // initListen();
-        setAvatar()
-    }, [])
-
-    function setAvatar() {
         let avatarIndex = localStorage.getItem('avatarIndex')
         if (avatarIndex !== undefined) {
-            dispatch(setMyUserInfo({
+            store.dispatch(setMyUserInfo({
                 ...myUserInfo,
                 avatarIndex: avatarIndex
             }))
         }
-    }
+    }, [myUserInfo])
 
     const handleClickMore = (e) => {
         setAddEl(e.currentTarget)
@@ -98,12 +84,10 @@ export default function Header() {
         setShowChatGroup(false);
     }
 
-    // TODO userInfo 
     const handleUserInfo = (e) => {
         setUserInfoAddEl(e.currentTarget)
         setShowUserInfoPopover(true);
     }
-    // 关闭群组创建选择 member
     const handleUserInfoClose = () => {
         setShowUserInfoPopover(false);
     }
@@ -198,3 +182,4 @@ export default function Header() {
         </>
     )
 }
+

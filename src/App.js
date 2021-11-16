@@ -1,28 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
 
 import {
 	Switch,
 	Route,
-	withRouter,
 	Redirect,
 	HashRouter
 } from "react-router-dom";
-
 import { createHashHistory } from 'history'
-
 import Login from './layout/login'
 import Main from './layout/main'
 
-import WebIM, { initIMSDK } from './utils/WebIM'
 import initListen from './utils/WebIMListen'
 import Loading from './components/common/loading'
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react';
-
+import { useSelector } from 'react-redux'
 
 const history = createHashHistory()
-// initIMSDK()
 initListen()
 
 const AuthorizedComponent = (props) => {
@@ -38,8 +30,6 @@ const AuthorizedComponent = (props) => {
 
 function App() {
 	const isFetching = useSelector(state => state?.isFetching) || false
-
-
 	return (
 		<div className="App">
 			<Loading show={isFetching} />

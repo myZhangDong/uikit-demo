@@ -1,11 +1,8 @@
 import React, { useEffect, useState, memo } from 'react'
 import CommonDialog from '../../common/dialog'
-import i18next from "i18next";
-import _ from 'lodash'
-import { Box, ListItemAvatar, Avatar, ListItem, List, TextField } from '@material-ui/core';
+import { Box, ListItemAvatar, Avatar, ListItem, List } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux'
 import { EaseApp } from 'es-uikit'
 import store from '../../../redux/store'
 const useStyles = makeStyles((theme) => {
@@ -79,7 +76,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 function AddressBookDialog(props) {
-    const { open, onClose, history, location } = props
+    const { open, onClose } = props
     const classes = useStyles();
     const state = store.getState()
     const constacts = state?.constacts || []// useSelector((state) => state.constacts) || []
@@ -93,12 +90,10 @@ function AddressBookDialog(props) {
 
     const [contactList, setContactList] = useState([])
     const handleClick = (itemData) => {
-        // uikit
         let session = {
             sessionType: "singleChat",
             sessionId: itemData,
         };
-        console.log('session', session)
         EaseApp.onClickSession(session);
         onClose()
     }
@@ -219,7 +214,6 @@ function AddressBookDialog(props) {
     useEffect(() => {
         let list = getBrands(contactsData)
         setContactList(list)
-        console.log('constacts+++', constacts)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [constacts.length])
 

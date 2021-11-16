@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from "react";
 import CommonDialog from "../../common/dialog";
 import i18next from "i18next";
-import { Avatar, Box, Button, TextField, Checkbox, List, ListItem, ListItemAvatar, Menu, MenuItem } from "@material-ui/core";
-
-import Grid from "@material-ui/core/Grid";
+import { Avatar, Button, TextField, List, ListItem, ListItemAvatar, Menu, MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import editIcon from '../../../assets/white@2x.png'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-import { IconButton, Icon } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import deleteContactIcon from '../../../assets/deletecontact@2x.png'
 import avater1 from '../../../assets/avatar1.png'
 import avater2 from '../../../assets/avatar2.png'
 import avater3 from '../../../assets/avatar3.png'
 import CheckIcon from '@material-ui/icons/Check';
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { setMyUserInfo } from '../../../redux/actions'
 import store from '../../../redux/store'
 
-import { removeFromBlackList, deleteContact } from '../../../api/contactsChat/getContacts'
+import { removeFromBlackList } from '../../../api/contactsChat/getContacts'
 const useStyles = makeStyles((theme) => {
     return {
         root: {
@@ -116,7 +114,6 @@ const useStyles = makeStyles((theme) => {
 const AVATARS = [avater1, avater2, avater3]
 export default function Setting({ open, onClose }) {
     const classes = useStyles();
-    const dispatch = useDispatch()
     const [tabIndex, setTabIndex] = useState(1)
     const [editStatus, setEditStatus] = useState(false)
     const [nickName, setNickName] = useState('')
@@ -262,7 +259,7 @@ export default function Setting({ open, onClose }) {
                         return (
                             <ListItem
                                 fullWidth
-                                key={value}
+                                key={labelId}
                             >
                                 <Button fullWidth style={{
                                     display: 'flex',
@@ -342,3 +339,4 @@ export default function Setting({ open, onClose }) {
         ></CommonDialog>
     );
 }
+

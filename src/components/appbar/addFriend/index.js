@@ -4,8 +4,6 @@ import i18next from "i18next";
 import { Box, TextField, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-// import { useDispatch } from 'react-redux'
-// import RosterActions from '@/redux/roster'
 import { message } from '../../common/alert'
 import { addContact } from '../../../api/contactsChat/getContacts'
 const useStyles = makeStyles((theme) => {
@@ -83,3 +81,4 @@ export default function AddfriendDialog({ open, onClose }) {
         ></CommonDialog>
     )
 }
+
