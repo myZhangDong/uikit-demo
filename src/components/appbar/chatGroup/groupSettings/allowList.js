@@ -4,7 +4,6 @@ import { Box, List, ListItem, ListItemText, Button } from "@material-ui/core"
 import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import _ from 'lodash';
 const useStyles = makeStyles((theme) => {
     return ({
         gUserName: {

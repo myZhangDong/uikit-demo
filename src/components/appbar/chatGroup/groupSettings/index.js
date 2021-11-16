@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import CommonDialog from '../../../common/dialog'
 import i18next from "i18next";
@@ -7,7 +7,6 @@ import { Box, Tabs, Tab, List, ListItem, ListItemText, Button } from '@material-
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import WebIM from '../../../../utils/WebIM'
-import store from '../../../../redux/store'
 import { TabPanel, a11yProps } from '../../../common/tabs'
 import GroupInfo from './groupInfo'
 import { closeGroup } from '../../../../api/groupChat/closeGroup'

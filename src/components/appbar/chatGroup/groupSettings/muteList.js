@@ -1,6 +1,5 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import { Box, List, ListItem, ListItemText, Button } from "@material-ui/core"
-import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -12,10 +11,10 @@ const useStyles = makeStyles((theme) => {
             textTransform: 'none',
             fontSize: '16px'
         },
-        noDataText:{
-            color:'#999999',
-            fontSize:'14px',
-            textAlign:'center'
+        noDataText: {
+            color: '#999999',
+            fontSize: '14px',
+            textAlign: 'center'
         }
     })
 });

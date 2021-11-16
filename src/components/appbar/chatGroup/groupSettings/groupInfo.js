@@ -51,7 +51,7 @@ const GroupInfo = () => {
 
     useEffect(() => {
         let aryMute = []
-        groupMuteList.length > 0 && groupMuteList.map((item, key) => {
+        groupMuteList.length > 0 && groupMuteList.forEach((item, key) => {
             aryMute.push(item.user)
         })
         setNewMuteList(aryMute)

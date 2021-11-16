@@ -1,14 +1,11 @@
 
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types';
 import CommonDialog from '../../common/dialog'
 import { useSelector } from 'react-redux'
 import i18next from "i18next";
 import { Box, Tabs, Tab } from '@material-ui/core';
 import { TabPanel, a11yProps } from '../../common/tabs'
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import store from '../../../redux/store';
 import AddedGroups from './addedGroup'
 import CreateGroup from './createGroup'
 import JoinGroup from './joinGroup'
@@ -52,8 +49,7 @@ const ChatGroupDialog = ({ open, onClose }) => {
     const [groupCount, setGroupCount] = useState(0)
     useEffect(() => {
         setGroupCount(groupList.length)
-    }, [groupList])
-
+    }, [groupList.length])
 
     const renderGroupContent = () => {
         return (

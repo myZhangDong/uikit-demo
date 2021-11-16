@@ -1,16 +1,12 @@
 
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import i18next from "i18next";
-import { Box, InputBase, List, ListItem, ListItemText, Button } from '@material-ui/core';
+import { Box, InputBase, List, ListItem } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import WebIM from '../../../../utils/WebIM'
-import store from '../../../../redux/store'
 import GroupSettingsDialog from '../groupSettings'
 import getGroupInfo from '../../../../api/groupChat/getGroupInfo'
 import search_icon from '../../../../assets/search.png'
-
 
 const useStyles = makeStyles((theme) => {
     return ({
@@ -45,9 +41,9 @@ const useStyles = makeStyles((theme) => {
             overflowY: 'scroll',
             overflowX: 'hidden',
         },
-        gInfoBox:{
-            display:'flex',
-            alignItems:'center',
+        gInfoBox: {
+            display: 'flex',
+            alignItems: 'center',
             cursor: 'pointer',
         },
         gAvatar: {
@@ -61,24 +57,21 @@ const useStyles = makeStyles((theme) => {
             margin: '0 10px',
         },
         gNameText: {
-            Typeface: 'Ping Fang SC',
+            typeface: 'Ping Fang SC',
             fontWeight: 'Semibold (600)',
             fontSize: '16px',
-            Character: 0,
+            character: '0',
             color: '#0D0D0D',
-            
             height: '48px',
             lineHeight: '48px'
         }
     })
 });
 
-
 const AddedGroups = () => {
     const classes = useStyles();
     const state = useSelector((state) => state);
     const groupList = state?.groups?.groupList || [];
-
     const [showGroupSettings, setshowGroupSettings] = useState(false)
     const [currentGroupId, setCurrentGroupId] = useState('')
 
@@ -94,30 +87,27 @@ const AddedGroups = () => {
                     <img src={search_icon} alt="" className={classes.searchImg} />
                     <InputBase type="search" placeholder="Search" className={classes.inputSearch} />
                 </Box>
-                <Box className={classes.gItem}>
+                <List className={classes.gItem}>
                     {groupList.length > 0 && groupList.map((item, key) => {
                         return (
-                            <List className={classes.gInfoBox} onClick={() => handleGroupSetting(item.groupid)} key={key}>
+                            <ListItem className={classes.gInfoBox} onClick={() => handleGroupSetting(item.groupid)} key={key}>
                                 <Box className={classes.gAvatar}></Box>
                                 <Box className={classes.gName}>
                                     <Typography className={classes.gNameText}>{item.groupname}</Typography>
                                 </Box>
-                            </List>
+                            </ListItem>
 
                         )
                     })}
-                </Box>
-
+                </List>
             </Box>
             <GroupSettingsDialog
                 open={showGroupSettings}
                 onClose={() => setshowGroupSettings(false)}
                 currentGroupId={currentGroupId}
-                >
+            >
             </GroupSettingsDialog>
         </>
-        
-
     )
 }
 

@@ -65,7 +65,7 @@ const MembersList = ({ newMuteList }) => {
     useEffect(() => {
         let _owner = [];
         let _member = [];
-        members.length > 0 && members.map((item) => {
+        members.length > 0 && members.forEach((item) => {
             if (item.owner) {
                 _owner.push(item.owner)
             } else if (item.member) {

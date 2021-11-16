@@ -137,7 +137,6 @@ export default function Setting({ open, onClose }) {
     };
 
     const handleMenuClick = (e) => {
-        console.log(e.target.innerHTML)
         if (e.target.innerHTML === 'info') {
             setTabIndex(1)
         } else if (e.target.innerHTML === 'privacy') {
@@ -154,7 +153,6 @@ export default function Setting({ open, onClose }) {
         setEditStatus(false)
     }
     const handleEditChange = (e) => {
-        console.log(e.target.value)
         setNickName(e.target.value)
     }
 

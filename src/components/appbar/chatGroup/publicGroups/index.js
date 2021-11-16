@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types';
-import CommonDialog from '../../../common/dialog'
 import { useSelector } from 'react-redux'
 import i18next from "i18next";
-import { Box, InputBase, Button } from '@material-ui/core';
+import { Box, InputBase } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import WebIM from '../../../../utils/WebIM'
-import store from '../../../../redux/store'
 import addGroup from '../../../../api/groupChat/addGroup'
 import search_icon from '../../../../assets/search.png'
 
 const useStyles = makeStyles((theme) => {
     return ({
-        root:{
-            width:'100%',
-            height:'100%'
+        root: {
+            width: '100%',
+            height: '100%'
         },
         inputBox: {
             display: 'flex',
@@ -64,7 +60,7 @@ const useStyles = makeStyles((theme) => {
             character: '0',
             color: '#0D0D0D'
         },
-        gIdText:{
+        gIdText: {
             Typeface: 'Ping Fang SC',
             fontWeight: 'Regular(400)',
             fontSize: '14px',
@@ -104,9 +100,9 @@ const PublicGroup = () => {
     const addedGroups = state?.groups?.groupList;
     const pulicGroupsList = state?.groups?.publicGroups;
     const [addedGroupsId, setAddedGroupsId] = useState([])
-    useEffect(() => {   
+    useEffect(() => {
         let groupArr = []
-        addedGroups.length > 0 && addedGroups.map((item, key) => {
+        addedGroups.length > 0 && addedGroups.forEach((item, key) => {
             groupArr.push(item.groupid)
         })
         setAddedGroupsId(groupArr);
