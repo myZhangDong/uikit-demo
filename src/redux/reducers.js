@@ -33,7 +33,7 @@ const reducer = (state = defaultState, action) => {
                 constacts: data
             }
         }
-        case 'GROUP_LIST_ACTION':
+        case 'GROUP_LIST_ACTION': 
             return {
                 ...state,
                 groups: {
