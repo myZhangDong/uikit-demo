@@ -166,7 +166,6 @@ function Notice(props) {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     function renderContent() {
         return (
             <div className={classes.root}>

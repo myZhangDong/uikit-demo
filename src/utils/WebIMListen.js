@@ -21,6 +21,7 @@ const initListen = () => {
         },
         onClosed: () => {
             console.log('onClosed>>>');
+            store.dispatch(setFetchingStatus(false))
             history.push('/login')
         },
         onOnline: (network) => {

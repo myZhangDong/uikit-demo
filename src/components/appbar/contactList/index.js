@@ -4,7 +4,7 @@ import { Box, ListItemAvatar, Avatar, ListItem, List } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { EaseApp } from 'es-uikit'
-import store from '../../../redux/store'
+import { useSelector } from 'react-redux'
 const useStyles = makeStyles((theme) => {
     return ({
         root: {
@@ -78,8 +78,12 @@ const useStyles = makeStyles((theme) => {
 function AddressBookDialog(props) {
     const { open, onClose } = props
     const classes = useStyles();
-    const state = store.getState()
-    const constacts = state?.constacts || []// useSelector((state) => state.constacts) || []
+    // const state = store.getState()
+    // const constacts = state?.constacts || []// useSelector((state) => state.constacts) || []
+
+    const constacts = useSelector((state) => {
+        return state?.constacts
+    }) || []
 
     let contactsData = constacts.map((user) => {
         return {
@@ -90,6 +94,7 @@ function AddressBookDialog(props) {
 
     const [contactList, setContactList] = useState([])
     const handleClick = (itemData) => {
+        // uikit
         let session = {
             sessionType: "singleChat",
             sessionId: itemData,

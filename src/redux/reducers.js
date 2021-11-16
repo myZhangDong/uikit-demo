@@ -13,7 +13,7 @@ let defaultState = {
         groupNotices: '',
     },
     sessionList: [],
-    requests: {},
+    requests: { contact: [], group: [] },
     // requests: { group: [{ name: 'zdzd', group: '123456', status: 'pedding', time: '', type: 'apply' }], contact: [{ name: 'zdzd', status: 'pedding', time: '' }] },
     blackList: [],
     myUserInfo: {
