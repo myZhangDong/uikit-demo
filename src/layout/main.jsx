@@ -8,7 +8,6 @@ import { EaseApp } from 'es-uikit'
 export default function Main() {
 
     useEffect(() => {
-
         const webimAuth = sessionStorage.getItem('webim_auth')
         let webimAuthObj = {}
         console.log('123123', webimAuth, WebIM.conn.logOut)
@@ -23,7 +22,6 @@ export default function Main() {
             {/* <Header /> */}
             <EaseApp
                 header={<Header />}
-                sdkConnection={WebIM.conn}
             />
         </div>
     )

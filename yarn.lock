@@ -4807,10 +4807,10 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-es-uikit@1.0.25:
-  version "1.0.25"
-  resolved "https://registry.yarnpkg.com/es-uikit/-/es-uikit-1.0.25.tgz#bd6f97d8afb866e8d5ab73f76d5e505749f9ae1e"
-  integrity sha512-7QNouOnBu3y+XconPwZJ1VQSNRyZtzRio1kNLbj22pYs33dw+FwqToo2xHRcs32vXFjLFUwc3KUKQFOb+JUowA==
+es-uikit@1.0.28:
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/es-uikit/-/es-uikit-1.0.28.tgz#b016907d47a3d85805f3c283965d09ca9495aa9d"
+  integrity sha512-8nISR41D2aLnjLfdBOFpNLHoLlYbNvTuhZ0I0Bdjsl7srxtWV4R+rZZCtklHWxM7OL0PO+Q61OBIxsPtHPvJ1A==
   dependencies:
     "@emotion/react" "^11.5.0"
     "@emotion/styled" "^11.3.0"

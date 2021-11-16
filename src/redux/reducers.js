@@ -13,7 +13,8 @@ let defaultState = {
         groupNotices: '',
     },
     sessionList: [],
-    requests: { group: [{ name: 'zdzd', group: '123456', status: 'pedding', time: '', type: 'apply' }], contact: [{ name: 'zdzd', status: 'pedding', time: '' }] },
+    requests: {},
+    // requests: { group: [{ name: 'zdzd', group: '123456', status: 'pedding', time: '', type: 'apply' }], contact: [{ name: 'zdzd', status: 'pedding', time: '' }] },
     blackList: [],
     myUserInfo: {
         agoraId: null,

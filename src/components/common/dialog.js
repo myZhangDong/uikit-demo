@@ -52,7 +52,7 @@ export default function AlertDialogSlide({ open, title, content, onClose, footer
                 aria-describedby="alert-dialog-slide-description"
                 fullWidth={false}
                 maxWidth={maxWidth}
-                >
+            >
                 {title ? <DialogTitle id="alert-dialog-slide-title" onClose={onClose}>
                     {title}
                 </DialogTitle> : null}

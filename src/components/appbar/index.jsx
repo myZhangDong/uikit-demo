@@ -69,13 +69,6 @@ export default function Header() {
         setAvatar()
     }, [])
 
-    // useEffect(() => {
-    //     if (WebIM.conn.logOut) {
-    //         loginChat()
-    //     }
-    // }, [WebIM])
-
-
     function setAvatar() {
         let avatarIndex = localStorage.getItem('avatarIndex')
         if (avatarIndex !== undefined) {

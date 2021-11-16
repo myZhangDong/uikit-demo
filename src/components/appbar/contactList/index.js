@@ -83,6 +83,7 @@ function AddressBookDialog(props) {
     const classes = useStyles();
     const state = store.getState()
     const constacts = state?.constacts || []// useSelector((state) => state.constacts) || []
+
     let contactsData = constacts.map((user) => {
         return {
             name: user,
