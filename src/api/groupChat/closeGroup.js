@@ -26,7 +26,7 @@ export const closeGroup = (groupId, type, onClose) => {
 export const rmGroupUser = (groupId, username) => {
     let option = {
         groupId: groupId,
-        username: username,                         // 群组成员名称
+        username: username,
     };
     WebIM.conn.removeSingleGroupMember(option).then((res) => {
         console.log('rmGroupUser success >>>', res);

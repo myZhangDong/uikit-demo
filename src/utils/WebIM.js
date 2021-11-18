@@ -1,8 +1,8 @@
 
 
 import { EaseApp } from 'es-uikit'
-
-const WebIM = EaseApp.getSdk({ appkey: '61308276#489779' })
+// 61308276#489779
+const WebIM = EaseApp.getSdk({ appkey: '61117440#460199' })
 // let WebIM = window.WebIM || {};
 
 // WebIM.config = config;
@@ -24,3 +24,4 @@ const WebIM = EaseApp.getSdk({ appkey: '61308276#489779' })
 
 
 export default WebIM;
+

@@ -9,7 +9,7 @@ import { getGroupBlock } from './groupBlock'
 import { getGroupWrite } from './groupWhite'
 const getGroupInfo = (groupId, type) => {
     let options = {
-        groupId: groupId   // 群组id
+        groupId: groupId
     };
     WebIM.conn.getGroupInfo(options).then((res) => {
         let id = res.data[0].id

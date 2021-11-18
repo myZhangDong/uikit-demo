@@ -50,11 +50,13 @@ const GroupInfo = () => {
     };
 
     useEffect(() => {
-        let aryMute = []
-        groupMuteList.length > 0 && groupMuteList.forEach((item, key) => {
-            aryMute.push(item.user)
-        })
-        setNewMuteList(aryMute)
+        if (groupMuteList) {
+            let aryMute = []
+            groupMuteList.length > 0 && groupMuteList.forEach((item, key) => {
+                aryMute.push(item.user)
+            })
+            setNewMuteList(aryMute)
+        }
     }, [groupMuteList.length])
 
     return (

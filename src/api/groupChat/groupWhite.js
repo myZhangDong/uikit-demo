@@ -4,7 +4,7 @@ import store from '../../redux/store'
 import { groupAllowAction } from '../../redux/actions'
 export const getGroupWrite = (groupId) => {
     let options = {
-        groupId: groupId  // 群组id
+        groupId: groupId
     }
     WebIM.conn.getGroupWhitelist(options).then((res) => {
         store.dispatch(groupAllowAction(res.data))
@@ -13,8 +13,8 @@ export const getGroupWrite = (groupId) => {
 
 export const rmGroupWhiteUser = (groupId, userName) => {
     let options = {
-        groupId: groupId,          // 群组id
-        userName: userName  // 成员id列表
+        groupId: groupId,
+        userName: userName
     };
     WebIM.conn.rmUsersFromGroupWhitelist(options).then((res) => {
         console.log('move mute success>>>', res);
@@ -24,8 +24,8 @@ export const rmGroupWhiteUser = (groupId, userName) => {
 
 export const addGroupWhiteUser = (groupId, userName) => {
     let options = {
-        groupId: groupId,          // 群组id
-        users: [userName]     // 成员id列表
+        groupId: groupId,
+        users: [userName]
     };
     WebIM.conn.addUsersToGroupWhitelist(options).then((res) => {
         console.log('make mute success>>>', res);

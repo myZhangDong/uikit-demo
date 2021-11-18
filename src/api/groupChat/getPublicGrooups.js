@@ -6,8 +6,8 @@ const getPublicGroups = () => {
     let limit = 200,
         cursor = 1;
     let options = {
-        limit: limit,                                            // 预期每页获取的记录数
-        cursor: cursor,                                          // 游标
+        limit: limit,
+        cursor: cursor,
     };
     WebIM.conn.listGroups(options).then((res) => {
         store.dispatch(publicGroupsAciton(res.data))

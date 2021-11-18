@@ -71,7 +71,6 @@ const UserInfoPopover = ({ open, anchorEl, onClose }) => {
                 vertical: 'bottom',
                 horizontal: 'right',
             }}
-
         >
             <Box className={classes.root}>
                 <Box className={classes.infoBox}>

@@ -6,8 +6,8 @@ import i18next from "i18next";
 
 const addGroup = (groupId) => {
     let options = {
-        groupId: groupId,         // 群组ID
-        message: "I am Tom"         // 请求信息
+        groupId: groupId,
+        message: "I am Tom"
     };
     WebIM.conn.joinGroup(options).then((res) => {
         console.log('joinGroup>>>', res)

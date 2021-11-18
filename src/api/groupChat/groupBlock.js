@@ -11,14 +11,14 @@ export const getGroupBlock = (groupId) => {
     WebIM.conn.getGroupBlacklistNew(option).then((res) => {
         console.log(res)
         store.dispatch(groupBlockAction(res.data));
-        getGroupInfo(groupId,'block')
+        getGroupInfo(groupId, 'block')
     })
 }
 
-export const onChangeGroupBlock = (groupId,userName,type) => {
+export const onChangeGroupBlock = (groupId, userName, type) => {
     let options = {
-        groupId: groupId,                     // 群组ID
-        username: userName                    // 将要被加入黑名单的用户名
+        groupId: groupId,
+        username: userName
     };
     if (type === "move") {
         WebIM.conn.removeGroupBlockSingle(options).then((res) => {

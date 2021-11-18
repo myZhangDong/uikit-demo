@@ -3,9 +3,7 @@ import store from '../../redux/store'
 import { contactsAciton, setBlackList, updateRequestStatus } from '../../redux/actions'
 
 const getContacts = () => {
-    console.log('开始拉取联系人')
     WebIM.conn.getRoster().then((res) => {
-        console.log('开始拉取联系人', res.data)
         store.dispatch(contactsAciton(res.data))
     });
 }
@@ -16,7 +14,6 @@ export const addContact = (userId, message) => {
 
 export const getBlackList = () => {
     WebIM.conn.getBlacklist().then((res) => {
-        console.log('>>>>>>获取黑名单成功', res);  // res.data > ['user1', 'user2']
         store.dispatch(setBlackList(res.data))
     })
 }

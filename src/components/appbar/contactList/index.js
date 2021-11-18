@@ -214,7 +214,7 @@ function AddressBookDialog(props) {
     useEffect(() => {
         let list = getBrands(contactsData)
         setContactList(list)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [constacts.length])
 
     return (
