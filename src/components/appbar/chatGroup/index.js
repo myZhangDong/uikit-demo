@@ -69,7 +69,7 @@ const ChatGroupDialog = ({ open, onClose }) => {
 
                 </Tabs>
                 <TabPanel value={value} index={0} className={classes.content}>
-                    <AddedGroups />
+                    <AddedGroups onClose={onClose}/>
                 </TabPanel>
                 <TabPanel value={value} index={1} className={classes.content}>
                     <CreateGroup onClose={onClose} />
