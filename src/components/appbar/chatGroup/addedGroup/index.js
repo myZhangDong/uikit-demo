@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Box, InputBase, List, ListItem } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import { Box, InputBase, List, ListItem,Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { EaseApp } from 'es-uikit'
 import GroupSettingsDialog from '../groupSettings'
 import getGroupInfo from '../../../../api/groupChat/getGroupInfo'
 import search_icon from '../../../../assets/search.png'
@@ -53,10 +53,15 @@ const useStyles = makeStyles((theme) => {
             backgroundColor: '#FF9F4D',
         },
         gName: {
-            borderRadius: '16px',
+            // borderRadius: '16px',
             margin: '0 10px',
+            width: '100%',
+            textAlign: 'left',
+            textTransform: 'none',
+            fontSize: '16px',
+            display: 'inherit'
         },
-        gNameText: {
+        gNameText: {            
             typeface: 'Ping Fang SC',
             fontWeight: 'Semibold (600)',
             fontSize: '16px',
@@ -68,18 +73,29 @@ const useStyles = makeStyles((theme) => {
     })
 });
 
-const AddedGroups = () => {
+const AddedGroups = ({ onClose }) => {
     const classes = useStyles();
     const state = useSelector((state) => state);
     const groupList = state?.groups?.groupList || [];
     const [showGroupSettings, setshowGroupSettings] = useState(false)
     const [currentGroupId, setCurrentGroupId] = useState('')
 
-    const handleGroupSetting = (groupid) => {
+    const handleGroupInfo = (groupid) => {
         getGroupInfo(groupid)
         setshowGroupSettings(true)
         setCurrentGroupId(groupid)
     }
+
+    const handleClickSession = (itemData) => {
+        // uikit
+        let session = {
+            sessionType: "groupChat",
+            sessionId: itemData,
+        };
+        EaseApp.onClickSession(session);
+        onClose();
+    }
+
     return (
         <>
             <Box className={classes.root}>
@@ -90,10 +106,12 @@ const AddedGroups = () => {
                 <List className={classes.gItem}>
                     {groupList.length > 0 && groupList.map((item, key) => {
                         return (
-                            <ListItem className={classes.gInfoBox} onClick={() => handleGroupSetting(item.groupid)} key={key}>
-                                <Box className={classes.gAvatar}></Box>
-                                <Box className={classes.gName}>
-                                    <Typography className={classes.gNameText}>{item.groupname}</Typography>
+                            <ListItem className={classes.gInfoBox}  key={key}>
+                                <Box className={classes.gAvatar} onClick={() => handleGroupInfo(item.groupid)}></Box>
+                                <Box style={{ width: '100%' }} onClick={() => { handleClickSession(item.groupid)}}>
+                                    <Button className={classes.gName}>
+                                        {item.groupname}
+                                    </Button>
                                 </Box>
                             </ListItem>
 

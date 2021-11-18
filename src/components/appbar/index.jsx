@@ -69,6 +69,12 @@ export default function Header() {
         setAddEl(e.currentTarget)
     }
 
+    const newChatDialog = () =>{
+        setShowContact(true)
+        setAddEl(null)
+    }
+
+
     function handleAddFriendDialogClose() {
         setShowAddFriend(false)
     }
@@ -79,6 +85,7 @@ export default function Header() {
 
     function createGroupDialog() {
         setShowChatGroup(true);
+        setAddEl(null);
     }
     function handleCreateGroupDialogClose() {
         setShowChatGroup(false);
@@ -107,7 +114,7 @@ export default function Header() {
                     open={Boolean(addEl)}
                     onClose={() => setAddEl(null)}
                 >
-                    <MenuItem onClick={() => setShowContact(true)}>
+                    <MenuItem onClick={newChatDialog}>
                         <Typography variant="inherit" noWrap style={{ display: 'flex', alignItems: 'center' }}>
                             <img src={newChatIcon} alt='new chat' style={{ width: '30px' }} />
                             New Chat
