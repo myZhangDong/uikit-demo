@@ -10,6 +10,7 @@ import AddedGroups from './addedGroup'
 import CreateGroup from './createGroup'
 import JoinGroup from './joinGroup'
 import PublicGroup from './publicGroups'
+import groupChatIcon from '../../../assets/groupchat@2x.png'
 
 const useStyles = makeStyles((theme) => {
     return ({
@@ -21,14 +22,15 @@ const useStyles = makeStyles((theme) => {
         },
         tabs: {
             background: '#FFFFFF',
-            width: '30%'
+            width: '45%'
         },
         menus: {
             color: '#000000',
             fontSize: '14px',
-            fontWeight: 'Medium(500)',
+            fontWeight: '500',
             typeface: 'Ping Fang SC',
             textTransform: ' none',
+            character:'0',
         },
         content: {
             background: '#EDEFF2',
@@ -62,7 +64,9 @@ const ChatGroupDialog = ({ open, onClose }) => {
                     aria-label="Vertical tabs example"
                     className={classes.tabs}
                 >
-                    <Tab label={`Added Groups(${groupCount})`} {...a11yProps(0)} className={classes.menus} />
+                    <Tab label={`Added Groups(${groupCount})`} {...a11yProps(0)} className={classes.menus} >
+                        <img src={groupChatIcon} alt='new chat' style={{ width: '30px' }} />
+                    </Tab>
                     <Tab label="New Group" {...a11yProps(1)} className={classes.menus} />
                     <Tab label="Join a Group" {...a11yProps(2)} className={classes.menus} />
                     <Tab label="Public Group" {...a11yProps(3)} className={classes.menus} />
