@@ -44,7 +44,11 @@ export default function Login() {
     }
 
     const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
+        let value = event.target.value
+        if (prop === 'agoraId') {
+            value = event.target.value.replace(/[^\w\.\/]/ig, '')
+        }
+        setValues({ ...values, [prop]: value });
     };
 
     return (
@@ -55,8 +59,8 @@ export default function Login() {
                 {notice.show ? <div className='login-form-notice'>
                     {notice.text}
                 </div> : null}
-                <input className='login-form-input' placeholder='AgoraID' onChange={handleChange('agoraId')}></input>
-                <input className='login-form-input' placeholder={i18next.t('login-NickName')} onChange={handleChange('nickName')}></input>
+                <input className='login-form-input' placeholder='AgoraID' onChange={handleChange('agoraId')} value={values.agoraId}></input>
+                <input className='login-form-input' placeholder={i18next.t('login-NickName')} value={values.nickName} onChange={handleChange('nickName')}></input>
                 <input type='button' className='login-form-input button' value={i18next.t('login-Login')} onClick={login} />
             </div>
             <div className='login-copyright'>
