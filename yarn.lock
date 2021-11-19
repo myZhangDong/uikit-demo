@@ -4655,10 +4655,15 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-easemob-websdk@4.0.1-beta2, easemob-websdk@^4.0.1-beta2:
+easemob-websdk@4.0.1-beta2:
   version "4.0.1-beta2"
   resolved "https://registry.yarnpkg.com/easemob-websdk/-/easemob-websdk-4.0.1-beta2.tgz#4b4eaa50a20b8b8bcdcb808dee5ee2a2ba0967af"
   integrity sha512-IZRLI3I1siwBPZe2in7JrF9ezot7JI8NKOvwLa6LsIgy92nncCFLLU8Almxou5WNWL4XL1jJLAFfjZv3gY7JmA==
+
+easemob-websdk@4.0.1-beta5:
+  version "4.0.1-beta5"
+  resolved "https://registry.yarnpkg.com/easemob-websdk/-/easemob-websdk-4.0.1-beta5.tgz#94f1dfce4cb120420197a5b0680501d55695a21f"
+  integrity sha512-bov8ktRl9KDx4loEWBln+YsJ9TPjiVqKgO8lBMYAv3+J8/6L+kPUpARrAldrPHM8SaC/UVzFsQSVm0rXCWSIaw==
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -4807,10 +4812,10 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-es-uikit@1.0.37:
-  version "1.0.37"
-  resolved "https://registry.yarnpkg.com/es-uikit/-/es-uikit-1.0.37.tgz#88f2dd0a1f307353e70bdea9d8f60c1fa69794e1"
-  integrity sha512-LAQKUaDh/DH7hxOh4ezMu5/9njrIk5lG31NwNBOX+K4N1AbOQK7JXu9TowL+nZbO1fSme3vx5LVnNrH4JI7S6g==
+es-uikit@1.0.41:
+  version "1.0.41"
+  resolved "https://registry.yarnpkg.com/es-uikit/-/es-uikit-1.0.41.tgz#9963a7b92cdc6d28d44fb6c568e5b9d8e0fbe2ed"
+  integrity sha512-OXALBwdKLtG6zI8Lu1b/WVjZneaBqdUzGFXb0VYKcwtd3Ekz5P/LPGJLVQFZpjax4uxgD19Edok7qTO1CKIqhQ==
   dependencies:
     "@emotion/react" "^11.5.0"
     "@emotion/styled" "^11.3.0"
@@ -4836,7 +4841,7 @@ es-uikit@1.0.37:
     dexie "^3.0.3"
     dotenv "8.2.0"
     dotenv-expand "5.1.0"
-    easemob-websdk "^4.0.1-beta2"
+    easemob-websdk "4.0.1-beta5"
     es-uikit "^0.1.2"
     eslint "^7.11.0"
     eslint-config-react-app "^6.0.0"

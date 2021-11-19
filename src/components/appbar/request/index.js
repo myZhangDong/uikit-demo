@@ -187,14 +187,14 @@ function Notice(props) {
                     <TabPanel value={value} index={0} style={{ overflowY: 'auto', flex: '1', backgroundColor: '#EDEFF2' }}>
                         {requests.contact.map(value => {
                             return (
-                                <RequestItem data={value} type="contact" text="Sent you a friend request." />
+                                <RequestItem key={value.name} data={value} type="contact" text="Sent you a friend request." />
                             )
                         })}
                     </TabPanel>
                     <TabPanel value={value} index={1} style={{ overflowY: 'auto', flex: '1', backgroundColor: '#EDEFF2' }}>
                         {requests.group.map(value => {
                             return (
-                                <RequestItem data={value} type="group" text={"Want to join the " + value.group} />
+                                <RequestItem key={value.group} data={value} type="group" text={"Want to join the " + value.group} />
                             )
                         })}
                     </TabPanel>

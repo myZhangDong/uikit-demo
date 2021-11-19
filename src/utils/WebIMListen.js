@@ -99,22 +99,24 @@ const initListen = () => {
         }
     })
 
-
     WebIM.conn.addEventHandler('TOKENSTATUS', {
-        onTokenWillexpire: () => {
-            console.log('token 将要过期')
-            let { myUserInfo } = store.getState()
-            getToken(myUserInfo.agoraId, myUserInfo.nickName).then((res) => {
-                const { accessToken } = res
-                WebIM.conn.renewToken(accessToken)
-                console.log('token 重新设置成功')
-            })
+        onTokenWillExpire: () => {
+            console.log('token 将要过期 addEventHandler')
+            // let { myUserInfo } = store.getState()
+            // getToken(myUserInfo.agoraId, myUserInfo.nickName).then((res) => {
+            //     const { accessToken } = res
+            //     WebIM.conn.renewToken(accessToken)
+            //     console.log('token 重新设置成功')
+            // })
         },
         onTokenExpired: () => {
             console.error('onTokenExpired')
         },
         onConnected: () => {
             console.log('onConnected')
+        },
+        onDisconnected: () => {
+            console.log('onDisconnected')
         }
     })
 
