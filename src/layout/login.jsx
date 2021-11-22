@@ -26,7 +26,7 @@ export default function Login() {
             return setNotice({ show: true, text: 'agoraId is required' })
         } else if (!values.nickName) {
             return setNotice({ show: true, text: 'nickName is required' })
-        } else if (values.nickName.length > 32 || values.agoraId > 32) {
+        } else if (values.nickName.length > 32 || values.agoraId.length > 32) {
             return setNotice({ show: true, text: 'nickName or agoraId is too long' })
         } else {
             setNotice({

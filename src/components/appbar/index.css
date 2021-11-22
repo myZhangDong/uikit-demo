@@ -26,4 +26,5 @@
 .chatlist-header-more {
     transform: rotate(90deg);
     cursor: pointer;
+    position: relative;
 }
