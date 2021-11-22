@@ -118,7 +118,6 @@ export default function Setting({ open, onClose }) {
     const [editStatus, setEditStatus] = useState(false)
     const [nickName, setNickName] = useState('')
     const [avatarIndex, setAvatarIndex] = useState(null)
-
     const [addEl, setAddEl] = useState(null)
 
     const myUserInfo = useSelector(state => state?.myUserInfo)
@@ -187,7 +186,7 @@ export default function Setting({ open, onClose }) {
                     </Avatar>
                     <img src={editIcon} alt='edit' className={classes.avatarEditIcon} onClick={() => setTabIndex(0)} />
                     <div>{nickName}</div>
-                    <div>AgoraID: 1234414312</div>
+                    <div>AgoraID: {myUserInfo?.agoraId}</div>
                 </div>
                 <div className={classes.settingMenuBox} onClick={handleMenuClick}>
                     <Button key={0} style={{ justifyContent: 'start' }} >info</Button>
