@@ -37,13 +37,13 @@ const useStyles = makeStyles((theme) => {
             padding: '0 8px'
         },
         joinBoxText: {
-            Typeface: 'Ping Fang SC',
-            Weight: 'Semibold(600)',
+            typeface: 'Ping Fang SC',
+            fontWeight: 'Semibold(600)',
             fontSize: '16px',
             character: '0',
             height:'22px',
             color:'#005FFF',
-            cursor:'pointer'
+            cursor:'pointer',
         }
     })
 });

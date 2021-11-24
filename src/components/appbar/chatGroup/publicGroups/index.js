@@ -58,7 +58,11 @@ const useStyles = makeStyles((theme) => {
             fontWeight: 'Semibold(600)',
             fontSize: '16px',
             character: '0',
-            color: '#0D0D0D'
+            color: '#0D0D0D',
+            overflowX: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'pre-wrap',
+            width:'400px'
         },
         gIdText: {
             Typeface: 'Ping Fang SC',
@@ -87,7 +91,7 @@ const useStyles = makeStyles((theme) => {
             fontWeight: 'Semibold (600)',
             fontSize: '16px',
             character: '0',
-            color: '#005FFF'
+            color: '#005FFF',
         }
     })
 });

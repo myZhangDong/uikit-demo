@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Box, InputBase, List, ListItem,Button } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { EaseApp } from 'es-uikit'
 import GroupSettingsDialog from '../groupSettings'
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => {
             textAlign: 'left',
             textTransform: 'none',
             fontSize: '16px',
-            display: 'inherit'
+            display: 'inherit',
         },
         gNameText: {            
             typeface: 'Ping Fang SC',
@@ -67,7 +68,11 @@ const useStyles = makeStyles((theme) => {
             character: '0',
             color: '#0D0D0D',
             height: '48px',
-            lineHeight: '48px'
+            lineHeight: '48px',
+            overflowX: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'pre-wrap',
+            width: '400px'
         }
     })
 });
@@ -109,7 +114,7 @@ const AddedGroups = ({ onClose }) => {
                                 <Box className={classes.gAvatar} onClick={() => handleGroupInfo(item.groupid)}></Box>
                                 <Box style={{ width: '100%' }} onClick={() => { handleClickSession(item.groupid)}}>
                                     <Button className={classes.gName}>
-                                        {item.groupname}
+                                        <Typography className={classes.gNameText}>{item.groupname}</Typography>
                                     </Button>
                                 </Box>
                             </ListItem>
