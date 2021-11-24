@@ -6,11 +6,15 @@ import i18next from "i18next";
 import { Box, Tabs, Tab } from '@material-ui/core';
 import { TabPanel, a11yProps } from '../../common/tabs'
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import AddedGroups from './addedGroup'
 import CreateGroup from './createGroup'
 import JoinGroup from './joinGroup'
 import PublicGroup from './publicGroups'
-import groupChatIcon from '../../../assets/groupchat@2x.png'
+import addedGroupIcon from '../../../assets/groupchat@2x.png'
+import newGroupIcon from '../../../assets/new_group@2x.png'
+import joinGroupIcon from '../../../assets/join_a_group@2x.png'
+import publicGroupsIcon from '../../../assets/public_group@2x.png'
 
 const useStyles = makeStyles((theme) => {
     return ({
@@ -23,6 +27,13 @@ const useStyles = makeStyles((theme) => {
         tabs: {
             background: '#FFFFFF',
             width: '45%'
+        },
+        menusBox: {
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'flex-start', 
+            width: '100%',
+            cursor:'pointer',
         },
         menus: {
             color: '#000000',
@@ -53,6 +64,40 @@ const ChatGroupDialog = ({ open, onClose }) => {
         setGroupCount(groupList.length)
     }, [groupList.length])
 
+
+    const AddedGroupsMenu = () => {
+        return (
+            <Box className={classes.menusBox}>
+                <img src={addedGroupIcon} alt='new chat' style={{ width: '30px' }} />
+                <Typography  style={{ marginLeft: '8px' }}>{`${i18next.t('Added Groups')}(${groupCount})`}</Typography>
+            </Box> 
+        )
+    }
+    const NewGroupMenu = () => {
+        return (
+            <Box className={classes.menusBox}>
+                <img src={newGroupIcon} alt='new chat' style={{ width: '30px' }} />
+                <Typography  style={{marginLeft:'8px'}}>{i18next.t('New Group')}</Typography>
+            </Box>
+        )
+    }
+    const JoinGroupMenu = () => {
+        return (
+            <Box className={classes.menusBox}>
+                <img src={joinGroupIcon} alt='new chat' style={{ width: '30px' }} />
+                <Typography  style={{ marginLeft: '8px' }}>{i18next.t('Join a Group')}</Typography>
+            </Box>
+        )
+    }
+    const PublicGroupMenu = () => {
+        return (
+            <Box className={classes.menusBox}>
+                <img src={publicGroupsIcon} alt='new chat' style={{ width: '30px' }} />
+                <Typography  style={{ marginLeft: '8px' }}>{i18next.t('Public Group')}</Typography>
+            </Box>
+        )
+    }
+
     const renderGroupContent = () => {
         return (
             <Box className={classes.root}>
@@ -64,12 +109,10 @@ const ChatGroupDialog = ({ open, onClose }) => {
                     aria-label="Vertical tabs example"
                     className={classes.tabs}
                 >
-                    <Tab label={`Added Groups(${groupCount})`} {...a11yProps(0)} className={classes.menus} >
-                        <img src={groupChatIcon} alt='new chat' style={{ width: '30px' }} />
-                    </Tab>
-                    <Tab label="New Group" {...a11yProps(1)} className={classes.menus} />
-                    <Tab label="Join a Group" {...a11yProps(2)} className={classes.menus} />
-                    <Tab label="Public Group" {...a11yProps(3)} className={classes.menus} />
+                    <Tab label={<AddedGroupsMenu />} {...a11yProps(0)} className={classes.menus}/>
+                    <Tab label={<NewGroupMenu />} {...a11yProps(1)} className={classes.menus} />
+                    <Tab label={<JoinGroupMenu />} {...a11yProps(2)} className={classes.menus} />
+                    <Tab label={<PublicGroupMenu />} {...a11yProps(3)} className={classes.menus} />
 
                 </Tabs>
                 <TabPanel value={value} index={0} className={classes.content}>
