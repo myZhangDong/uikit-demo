@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => {
             paddingLeft: '8px'
         },
         gItem: {
-            height: '580px',
+            height: '590px',
             overflowY: 'scroll',
             overflowX: 'hidden',
         },

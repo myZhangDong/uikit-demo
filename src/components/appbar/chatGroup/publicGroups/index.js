@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => {
             paddingLeft: '8px'
         },
         gList: {
-            height: '580px',
+            height: '590px',
             marginTop: '18px',
             overflowY: 'scroll',
             overflowX: 'hidden'
