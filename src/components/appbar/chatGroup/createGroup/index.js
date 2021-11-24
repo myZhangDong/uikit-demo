@@ -25,7 +25,11 @@ const useStyles = makeStyles((theme) => {
             fontWeight: '600',
             fontSize: '16px',
             character: '0',
-            color: '#0D0D0D',
+        },
+        gNameLimit:{
+            position: 'absolute',
+            right: '25px',
+            color: '#d42e2e'
         },
         gDescriptionBox: {
             borderBottom: '1px solid #E6E6E6',
@@ -65,7 +69,6 @@ const useStyles = makeStyles((theme) => {
             padding: '0 15px',
             alignItems: 'center',
         },
-
         gInvite: {
             color: '#CCCCCC',
             display: ' flex',
@@ -76,7 +79,6 @@ const useStyles = makeStyles((theme) => {
             background: '#F4F5F7',
             height: '55px',
             borderRadius: '16px'
-
         },
         gNext: {
             display: 'flex',
@@ -101,15 +103,27 @@ const CreateGroup = () => {
     const [groupDescriptionValue, setGroupDescriptionValue] = useState('')
     const [groupMaximumValue, setGroupMaximumValue] = useState('')
     const [groupPublicChecked, setGroupPublicChecked] = useState(true);
-    const [groupInviteChecker, setGroupInviteChecker] = useState(true);
+    const [groupApprovalChecked, setGroupApprovalChecked] = useState(false)
+    const [groupInviteChecked, setGroupInviteChecked] = useState(false);
+
 
     const [showSelectUserDialog, setShowSelectUserDialog] = useState(false)
     const [groupInfoData, setGroupInfoData] = useState({})
 
+    const [showGroupNamelimit, setShowGroupNamelimit] = useState(false)
 
     // 群组名称
     const handleNameChange = (event) => {
-        setGroupNameValue(event.target.value)
+        let inputValue = event.target.value
+        if (inputValue.length > 20) {
+            setShowGroupNamelimit(true)
+            setGroupNameValue(inputValue.slice(0,20))
+            return
+        }else{
+            setShowGroupNamelimit(false)
+            setGroupNameValue(inputValue)
+        }
+       
     }
     // 群组描述
     const handleDescriptionChange = (event) => {
@@ -123,15 +137,18 @@ const CreateGroup = () => {
     const handleGrooupPublicChange = (event) => {
         setGroupPublicChecked(event.target.checked);
     };
+    const handleGrooupApprovalChange = (event) => {
+        setGroupApprovalChecked(event.target.checked)
+    }
     // 群组是否允许成员邀请
     const handleGroupInviteChange = (event) => {
-        setGroupInviteChecker(event.target.checked);
+        setGroupInviteChecked(event.target.checked);
     };
 
     // 打开群组创建选择 member
     const handleSelectUserDialog = () => {
         setShowSelectUserDialog(true);
-        setGroupInfoData({ groupNameValue, groupDescriptionValue, groupMaximumValue, groupPublicChecked, groupInviteChecker })
+        setGroupInfoData({ groupNameValue, groupDescriptionValue, groupMaximumValue, groupPublicChecked, groupApprovalChecked, groupInviteChecked })
     }
     // 关闭群组创建选择 member
     const handleSelectUserDialogClose = () => {
@@ -151,9 +168,12 @@ const CreateGroup = () => {
                             <Typography className={classes.gNameText}>GroupName</Typography>
                             <InputBase
                                 type="text"
+                                max={20}
+                                maxlength={20}
                                 className={classes.gInputBaseWidth}
                                 placeholder={i18next.t('groupName')}
                                 onChange={handleNameChange} />
+                            {showGroupNamelimit && <Typography className={classes.gNameLimit}>{i18next.t('Only 20 characters')}</Typography>}
                         </Box>
                         <Box className={classes.gDescriptionBox}>
                             <Box className={classes.gDescription}>
@@ -161,6 +181,7 @@ const CreateGroup = () => {
                                 <InputBase
                                     type="text"
                                     multiline={true}
+                                    maxRows={3}
                                     style={{
                                         height: '60px', 
                                         overflowX: 'hidden',
@@ -192,10 +213,20 @@ const CreateGroup = () => {
                             color="primary"
                         />
                     </Box>
-                    <Box className={classes.gInvite}>
-                        <Typography >Allow Members to Invite</Typography>
+
+                    <Box className={classes.gSetting} style={{ color: groupPublicChecked ? 'rgba(0, 0, 0, 0.87)' : '#CCCCCC', pointerEvents: groupPublicChecked? 'all' : 'none'}}>
+                        <Typography className={classes.gNameText}>Authorizated to join</Typography>
                         <Switch
-                            checked={groupInviteChecker}
+                            checked={groupApprovalChecked}
+                            onChange={handleGrooupApprovalChange}
+                            color="primary"
+                        />
+                    </Box>
+
+                    <Box className={classes.gInvite} style={{ color: groupPublicChecked ? '#CCCCCC' : 'rgba(0, 0, 0, 0.87)', pointerEvents: groupPublicChecked ? 'none' : 'all' }}>
+                        <Typography className={classes.gNameText}>Allow Members to Invite</Typography>
+                        <Switch
+                            checked={groupInviteChecked}
                             onChange={handleGroupInviteChange}
                             color="primary"
                         />

@@ -60,6 +60,7 @@ const initListen = () => {
         onTokenWillExpire: () => {
             console.log('token 将要过期 -')
             let { myUserInfo } = store.getState()
+            console.log('myUserInfo>>>', myUserInfo);
             getToken(myUserInfo.agoraId, myUserInfo.nickName).then((res) => {
                 const { accessToken } = res
                 WebIM.conn.renewToken(accessToken)

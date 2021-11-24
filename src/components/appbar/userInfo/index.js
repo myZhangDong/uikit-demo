@@ -68,7 +68,7 @@ const UserInfoPopover = ({ open, anchorEl, onClose }) => {
             anchorEl={anchorEl}
             onClose={onClose}
             anchorOrigin={{
-                vertical: 'bottom',
+                vertical: 'center',
                 horizontal: 'right',
             }}
         >
