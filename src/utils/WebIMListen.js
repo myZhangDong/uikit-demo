@@ -7,6 +7,9 @@ import { createHashHistory } from 'history'
 import store from '../redux/store'
 import { setRequests, setFetchingStatus } from '../redux/actions'
 import { getToken } from '../api/loginChat'
+import { agreeInviteGroup } from '../api/groupChat/addGroup'
+import i18next from "i18next";
+import { message } from '../components/common/alert'
 const history = createHashHistory()
 const initListen = () => {
     WebIM.conn.listen({
@@ -42,12 +45,18 @@ const initListen = () => {
         // onCmdMessage: (message) => {
         //     console.log('onCmdMessaeg>>>', message);
         // },
-        onPresence: (message) => {
-            console.log('onPresence>>>', message);
-            const { type } = message;
+        onPresence: (event) => {
+            console.log('onPresence>>>', event);
+            const { type } = event;
             switch (type) {
                 case 'joinPublicGroupSuccess':
                     getGroups();
+                    break;
+                case 'invite': 
+                    agreeInviteGroup(event)
+                    break;
+                case 'removedFromGroup':
+                    message.info(`${i18next.t('您已被移除群：')}` + event.gid)
                     break;
                 default:
                     break;

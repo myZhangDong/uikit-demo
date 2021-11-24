@@ -3,7 +3,7 @@ import i18next from "i18next";
 import { Box, InputBase } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import addGroup from '../../../../api/groupChat/addGroup'
+import {addGroup} from '../../../../api/groupChat/addGroup'
 import search_icon from '../../../../assets/search.png'
 
 const useStyles = makeStyles((theme) => {
