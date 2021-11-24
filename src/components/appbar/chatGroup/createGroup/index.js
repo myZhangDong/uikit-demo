@@ -217,7 +217,7 @@ const CreateGroup = () => {
                     <Box className={classes.gSetting} style={{ color: groupPublicChecked ? 'rgba(0, 0, 0, 0.87)' : '#CCCCCC', pointerEvents: groupPublicChecked? 'all' : 'none'}}>
                         <Typography className={classes.gNameText}>Authorizated to join</Typography>
                         <Switch
-                            checked={groupApprovalChecked}
+                            checked={groupPublicChecked ? groupApprovalChecked : true }
                             onChange={handleGrooupApprovalChange}
                             color="primary"
                         />
@@ -226,7 +226,7 @@ const CreateGroup = () => {
                     <Box className={classes.gInvite} style={{ color: groupPublicChecked ? '#CCCCCC' : 'rgba(0, 0, 0, 0.87)', pointerEvents: groupPublicChecked ? 'none' : 'all' }}>
                         <Typography className={classes.gNameText}>Allow Members to Invite</Typography>
                         <Switch
-                            checked={groupInviteChecked}
+                            checked={groupPublicChecked ? false : groupInviteChecked}
                             onChange={handleGroupInviteChange}
                             color="primary"
                         />
