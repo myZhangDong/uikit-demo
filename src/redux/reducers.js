@@ -21,7 +21,8 @@ let defaultState = {
         nickName: null,
         avatarIndex: null
     },
-    isFetching: false
+    isFetching: false,
+    isSearching: false,
 };
 
 const reducer = (state = defaultState, action) => {
@@ -33,7 +34,7 @@ const reducer = (state = defaultState, action) => {
                 constacts: data
             }
         }
-        case 'GROUP_LIST_ACTION': 
+        case 'GROUP_LIST_ACTION':
             return {
                 ...state,
                 groups: {
@@ -154,6 +155,29 @@ const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 isFetching: data
+            }
+        case 'SEARCH_ADDED_GROUP_ACTION':
+            let searchAddedGroups = (state.groups.groupList).filter((item) => (item.groupname).includes(data))
+            return {
+                ...state,
+                groups: {
+                    ...state.groups,
+                    groupList: searchAddedGroups
+                }
+            }
+        case 'SEARCH_PUBLIC_GROUP_ACTION':
+            let searcPublichGroups = (state.groups.publicGroups).filter((item) => (item.groupname).includes(data))
+            return {
+                ...state,
+                groups: {
+                    ...state.groups,
+                    publicGroups: searcPublichGroups
+                }
+            }
+        case 'SEARCH_LOAD_ACTION':
+            return {
+                ...state,
+                isSearching: data
             }
         default:
             break;

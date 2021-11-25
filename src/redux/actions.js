@@ -61,3 +61,17 @@ export const updateRequestStatus = (data) => {
 export const setFetchingStatus = (data) => {
     return { type: 'SET_FETCHING_STATUS', data };
 }
+
+// search added group value
+export const searchAddedGroupAction = (data ) => {
+    return { type: 'SEARCH_ADDED_GROUP_ACTION', data}
+}
+
+// search public group value
+export const searchPublicGroupAction = (data) => {
+    return { type: 'SEARCH_PUBLIC_GROUP_ACTION', data }
+}
+// search loading
+export const searchLoadAction = (data) => {
+    return { type: 'SEARCH_LOAD_ACTION', data }
+}
