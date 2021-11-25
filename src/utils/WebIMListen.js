@@ -2,7 +2,7 @@
 import WebIM from './WebIM'
 import getContacts, { getBlackList } from '../api/contactsChat/getContacts'
 import getGroups from '../api/groupChat/getGroups'
-import getPublicGroups from '../api/groupChat/getPublicGrooups'
+import getPublicGroups from '../api/groupChat/getPublicGroups'
 import { createHashHistory } from 'history'
 import store from '../redux/store'
 import { setRequests, setFetchingStatus } from '../redux/actions'

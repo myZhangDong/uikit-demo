@@ -4,7 +4,11 @@ import i18next from "i18next";
 import { Box, InputBase } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import {addGroup} from '../../../../api/groupChat/addGroup'
+import store from '../../../../redux/store'
+import { searchPublicGroupAction, searchLoadAction } from '../../../../redux/actions'
+import { addGroup } from '../../../../api/groupChat/addGroup'
+import getPublicGroups from '../../../../api/groupChat/getPublicGroups'
+import Loading from '../../../common/loading'
 import search_icon from '../../../../assets/search.png'
 
 const useStyles = makeStyles((theme) => {
@@ -62,7 +66,7 @@ const useStyles = makeStyles((theme) => {
             overflowX: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'pre-wrap',
-            width:'400px'
+            width: '400px'
         },
         gIdText: {
             Typeface: 'Ping Fang SC',
@@ -103,6 +107,8 @@ const PublicGroup = () => {
     const state = useSelector((state) => state);
     const addedGroups = state?.groups?.groupList;
     const pulicGroupsList = state?.groups?.publicGroups;
+    console.log('pulicGroupsList>>>', pulicGroupsList);
+    const isSearching = state?.isSearching || false
     const [addedGroupsId, setAddedGroupsId] = useState([])
     useEffect(() => {
         let groupArr = []
@@ -112,13 +118,29 @@ const PublicGroup = () => {
         setAddedGroupsId(groupArr);
     }, [addedGroups])
 
+
+    const handleSearchValue = (e) => {
+        if (!(e.target.value)) {
+            getPublicGroups()
+            store.dispatch(searchLoadAction(true))
+        } else {
+            store.dispatch(searchPublicGroupAction(e.target.value))
+        }
+    }
+
     return (
         <Box className={classes.root}>
             <Box className={classes.inputBox}>
                 <img src={search_icon} alt="" className={classes.searchImg} />
-                <InputBase type="search" placeholder="Srarch" className={classes.inputSearch} />
+                <InputBase
+                    type="search"
+                    placeholder="Srarch"
+                    className={classes.inputSearch} 
+                    onChange={handleSearchValue}
+                />
             </Box>
             <Box className={classes.gList}>
+                <Loading show={isSearching} />
                 {
                     pulicGroupsList.length > 0 && pulicGroupsList.map((item, key) => {
                         return (
