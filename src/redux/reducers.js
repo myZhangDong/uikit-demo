@@ -137,9 +137,8 @@ const reducer = (state = defaultState, action) => {
                 let groupReqs = [...requests.group]
                 let len = groupReqs.length
                 for (let index = 0; index < len; index++) {
-                    if (groupReqs[index].name === data.name){
+                    if (groupReqs[index].name === data.name) {
                         groupReqs[index].status = data.status
-                        console.log('index>>>', index)
                         break;
                     }
                 }
@@ -188,6 +187,16 @@ const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 isSearching: data
+            }
+
+        case 'SEARCH_CONTACTS_ACTION':
+            let searchContacts = (state.constacts).filter((item) => (item).includes(data))
+            return {
+                ...state,
+                constacts: searchContacts
+            }
+            return {
+
             }
         default:
             break;

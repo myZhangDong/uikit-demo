@@ -48,7 +48,6 @@ export default function Header() {
     useEffect(() => {
         let unDealRequestsNum = countNum(requests.group) + countNum(requests.contact)
         setUnDealRequestsNum(unDealRequestsNum)
-        console.log('setUnDealRequestsNum>>> ---')
     }, [requests])
 
     function countNum(arr) {

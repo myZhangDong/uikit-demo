@@ -137,7 +137,7 @@ const AddedGroups = ({ onClose }) => {
                         return (
                             <ListItem className={classes.gInfoBox} key={key}>
                                 <Box className={classes.gAvatar} onClick={() => handleGroupInfo(item.groupid)}></Box>
-                                <Box style={{ width: '100%' }} onClick={() => { handleClickSession(item.groupid) }}>
+                                <Box style={{ flex:'1' }} onClick={() => { handleClickSession(item.groupid) }}>
                                     <Button className={classes.gName}>
                                         <Typography className={classes.gNameText}>{item.groupname}</Typography>
                                     </Button>

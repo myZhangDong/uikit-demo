@@ -192,7 +192,6 @@ function Notice(props) {
                     </TabPanel>
                     <TabPanel value={value} index={1} style={{ overflowY: 'auto', flex: '1', backgroundColor: '#EDEFF2' }}>
                         {requests.group.map((value,key) => {
-                            console.log('value>>>',value);
                             return (
                                 <RequestItem key={key} data={value} type="group" text={"Want to join the " + value.groupId} />
                             )

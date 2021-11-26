@@ -75,3 +75,8 @@ export const searchPublicGroupAction = (data) => {
 export const searchLoadAction = (data) => {
     return { type: 'SEARCH_LOAD_ACTION', data }
 }
+
+// search contacts value
+export const searchContactsAction = (data) => {
+    return { type: 'SEARCH_CONTACTS_ACTION', data }
+}
