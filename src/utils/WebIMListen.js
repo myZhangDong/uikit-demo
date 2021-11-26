@@ -49,6 +49,9 @@ const initListen = () => {
             console.log('onPresence>>>', event);
             const { type } = event;
             switch (type) {
+                case 'subscribed':
+                    getContacts();
+                    break;
                 case 'joinPublicGroupSuccess':
                     getGroups();
                     break;
@@ -99,11 +102,23 @@ const initListen = () => {
                 let groupRequests = requests.group
                 let data = {
                     name: msg.from,
+                    groupId: msg.gid,
                     status: 'pedding',
                     time: Date.now()
                 }
-                groupRequests.unshift(data)
-                let newRequests = { ...requests, group: groupRequests }
+                let index = groupRequests.findIndex((value) => {
+                    if (value.name === data.name && value.groupId === data.groupId){
+                        return true
+                    }
+                })
+                if (index > -1){
+                    groupRequests[index] = data
+                }else{
+                    groupRequests.unshift(data)
+                }
+                
+                // groupRequests.unshift(data)
+                let newRequests = { ...requests, group: [...groupRequests] }
                 store.dispatch(setRequests(newRequests))
             }
         }

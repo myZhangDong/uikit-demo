@@ -24,6 +24,8 @@ import { logout } from '../../api/loginChat'
 
 import UserInfoPopover from './userInfo'
 
+import { useSelector } from "react-redux";
+
 const AVATARS = [avater1, avater2, avater3]
 export default function Header() {
     const [addEl, setAddEl] = useState(null)
@@ -36,13 +38,23 @@ export default function Header() {
     // userInfo
     const [showUserInfoPopover, setShowUserInfoPopover] = useState(false)
     const [userInfoaddEl, setUserInfoAddEl] = useState(null)
-    let state = store.getState()
+    const [unDealRequestsNum, setUnDealRequestsNum] = useState(0)
+    // let state = store.getState()
+    const state = useSelector(state => state)
     let myUserInfo = state?.myUserInfo
     let requests = state?.requests || {}
-    let unDealRequestsNum = countNum(requests.group) + countNum(requests.contact)
+    // let unDealRequestsNum = countNum(requests.group) + countNum(requests.contact)
+
+    useEffect(() => {
+        let unDealRequestsNum = countNum(requests.group) + countNum(requests.contact)
+        setUnDealRequestsNum(unDealRequestsNum)
+        console.log('setUnDealRequestsNum>>> ---')
+    }, [requests])
+
     function countNum(arr) {
         if (!Array.isArray(arr)) return 0
         return arr.reduce((prev, curr) => {
+
             console.log(prev, curr)
             if (curr.status === 'pedding') {
                 prev++
@@ -63,7 +75,7 @@ export default function Header() {
                 avatarIndex: avatarIndex
             }))
         }
-    }, [myUserInfo])
+    }, [])
 
     const handleClickMore = (e) => {
         setAddEl(e.currentTarget)

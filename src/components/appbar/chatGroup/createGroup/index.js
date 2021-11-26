@@ -4,7 +4,8 @@ import i18next from "i18next";
 import { Box, Switch, InputBase } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import SelectGroupMemberDialog from './selectGroupMember'
+import AddGroupMemberDialog from './addMember'
+
 import go_icon from '../../../../assets/go@2x.png'
 
 const useStyles = makeStyles((theme) => {
@@ -103,13 +104,10 @@ const CreateGroup = () => {
     const [groupDescriptionValue, setGroupDescriptionValue] = useState('')
     const [groupMaximumValue, setGroupMaximumValue] = useState('')
     const [groupPublicChecked, setGroupPublicChecked] = useState(true);
-    const [groupApprovalChecked, setGroupApprovalChecked] = useState(false)
+    const [groupApprovalChecked, setGroupApprovalChecked] = useState(true)
     const [groupInviteChecked, setGroupInviteChecked] = useState(false);
-
-
-    const [showSelectUserDialog, setShowSelectUserDialog] = useState(false)
+    const [showAddMemberDialog, setShowAddMemberDialog] = useState(false)
     const [groupInfoData, setGroupInfoData] = useState({})
-
     const [showGroupNamelimit, setShowGroupNamelimit] = useState(false)
 
     // 群组名称
@@ -147,20 +145,20 @@ const CreateGroup = () => {
 
     // 打开群组创建选择 member
     const handleSelectUserDialog = () => {
-        setShowSelectUserDialog(true);
+        setShowAddMemberDialog(true);
         setGroupInfoData({ groupNameValue, groupDescriptionValue, groupMaximumValue, groupPublicChecked, groupApprovalChecked, groupInviteChecked })
     }
     // 关闭群组创建选择 member
     const handleSelectUserDialogClose = () => {
-        setShowSelectUserDialog(false);
+        setShowAddMemberDialog(false);
     }
 
     return (
         <Box>
-            {showSelectUserDialog ?
-                <SelectGroupMemberDialog
+            {showAddMemberDialog ?
+                <AddGroupMemberDialog
                     groupInfoData={groupInfoData}
-                    open={showSelectUserDialog} onClose={handleSelectUserDialogClose}
+                    open={showAddMemberDialog} onClose={handleSelectUserDialogClose}
                 />
                 : <Box>
                     <Box className={classes.inputBox}>
@@ -169,7 +167,6 @@ const CreateGroup = () => {
                             <InputBase
                                 type="text"
                                 max={20}
-                                maxlength={20}
                                 className={classes.gInputBaseWidth}
                                 placeholder={i18next.t('groupName')}
                                 onChange={handleNameChange} />
@@ -195,11 +192,13 @@ const CreateGroup = () => {
                                 {groupDescriptionValue.length}/300
                             </Box>
                         </Box>
-                        <Box >
+                        <Box style={{ color:'#CCCCCC', pointerEvents: 'none' }}>
                             <Box className={classes.gInfoSetting}>
                                 <Typography className={classes.gNameText}>Maximum Mumber</Typography>
                                 <InputBase
                                     type="number"
+                                    value={200}
+                                    style={{ color:'#CCCCCC'}}
                                     placeholder={i18next.t('No More Than 2000')}
                                     onChange={groupMaximumValue} />
                             </Box>
