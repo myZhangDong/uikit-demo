@@ -107,7 +107,6 @@ const PublicGroup = () => {
     const state = useSelector((state) => state);
     const addedGroups = state?.groups?.groupList;
     const pulicGroupsList = state?.groups?.publicGroups;
-    console.log('pulicGroupsList>>>', pulicGroupsList);
     const isSearching = state?.isSearching || false
     const [addedGroupsId, setAddedGroupsId] = useState([])
     useEffect(() => {

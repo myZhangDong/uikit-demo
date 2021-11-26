@@ -128,13 +128,23 @@ const reducer = (state = defaultState, action) => {
                 })
                 newRequests = { ...requests, contact: updatedReq }
             } else {
-                let updatedReq = requests.group.map(value => {
-                    if (value.name === data.name) {
-                        value.status = data.status
+                // let updatedReq = requests.group.map(value => {
+                //     if (value.name === data.name) {
+                //         value.status = data.status
+                //     }
+                //     return value
+                // })
+                let groupReqs = [...requests.group]
+                let len = groupReqs.length
+                for (let index = 0; index < len; index++) {
+                    if (groupReqs[index].name === data.name){
+                        groupReqs[index].status = data.status
+                        console.log('index>>>', index)
+                        break;
                     }
-                    return value
-                })
-                newRequests = { ...requests, group: updatedReq }
+                }
+
+                newRequests = { ...requests, group: groupReqs }
             }
             return {
                 ...state,

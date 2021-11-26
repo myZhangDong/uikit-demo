@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
         height: '102px',
         backgroundColor: '#F7F7F7',
         flex: 1,
-        width: '385px',
+        width: '100%',
         borderRadius: '16px',
         margin: '5px',
         display: 'flex',
@@ -110,12 +110,11 @@ function TabPanel(props) {
 function RequestItem(props) {
     const classes = useStyles();
     const { data, text, type } = props
-
     const accept = () => {
         if (type === 'contact') {
             acceptContactRequest(data.name)
         } else {
-            acceptGroupRequest(data.name, data.group)
+            acceptGroupRequest(data.name, data.groupId)
         }
     }
 
@@ -123,7 +122,7 @@ function RequestItem(props) {
         if (type === 'contact') {
             declineContactRequest(data.name)
         } else {
-            declineGroupRequest(data.name, data.group)
+            declineGroupRequest(data.name, data.groupId)
         }
     }
     let buttonContent = null
@@ -192,9 +191,10 @@ function Notice(props) {
                         })}
                     </TabPanel>
                     <TabPanel value={value} index={1} style={{ overflowY: 'auto', flex: '1', backgroundColor: '#EDEFF2' }}>
-                        {requests.group.map(value => {
+                        {requests.group.map((value,key) => {
+                            console.log('value>>>',value);
                             return (
-                                <RequestItem key={value.group} data={value} type="group" text={"Want to join the " + value.group} />
+                                <RequestItem key={key} data={value} type="group" text={"Want to join the " + value.groupId} />
                             )
                         })}
                     </TabPanel>
