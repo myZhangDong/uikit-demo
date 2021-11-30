@@ -114,7 +114,7 @@ export default function Header() {
         <>
             <div className='chatlist-header'>
                 {/* <div className='chatlist-header-avatar'></div> */}
-                <Avatar style={{ width: 40, height: 40 }} src={avatarUrl} onClick={handleUserInfo}></Avatar>
+                <Avatar style={{ width: 40, height: 40 }} src={avatarUrl} ></Avatar>
                 <div className='chatlist-header-title'>AgoraChat</div>
                 <div className='chatlist-header-more' onClick={handleClickMore}>...
                 {unDealRequestsNum > 0 ? <p style={{ width: '6px', height: '6px', background: '#FF14CC', borderRadius: '3px', position: 'absolute', top: '-12px', left: '-5px' }}></p> : null}

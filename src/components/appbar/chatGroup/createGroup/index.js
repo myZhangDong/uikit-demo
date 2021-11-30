@@ -169,6 +169,7 @@ const CreateGroup = () => {
                                 max={20}
                                 className={classes.gInputBaseWidth}
                                 placeholder={i18next.t('groupName')}
+                                value={groupNameValue}
                                 onChange={handleNameChange} />
                             {showGroupNamelimit && <Typography className={classes.gNameLimit}>{i18next.t('Only 20 characters')}</Typography>}
                         </Box>
@@ -186,6 +187,7 @@ const CreateGroup = () => {
                                     }}
                                     className={classes.gInputBaseWidth}
                                     placeholder={i18next.t('Not required')}
+                                    value={groupDescriptionValue}
                                     onChange={handleDescriptionChange} />
                             </Box>
                             <Box className={classes.gDescriptionLenth}>
@@ -212,8 +214,7 @@ const CreateGroup = () => {
                             color="primary"
                         />
                     </Box>
-
-                    <Box className={classes.gSetting} style={{ color: groupPublicChecked ? 'rgba(0, 0, 0, 0.87)' : '#CCCCCC', pointerEvents: groupPublicChecked? 'all' : 'none'}}>
+                    <Box className={classes.gSetting} key={groupPublicChecked} style={{ color: groupPublicChecked ? 'rgba(0, 0, 0, 0.87)' : '#CCCCCC', pointerEvents: groupPublicChecked? 'all' : 'none'}}>
                         <Typography className={classes.gNameText}>Authorizated to join</Typography>
                         <Switch
                             checked={groupPublicChecked ? groupApprovalChecked : true }
@@ -221,7 +222,6 @@ const CreateGroup = () => {
                             color="primary"
                         />
                     </Box>
-
                     <Box className={classes.gInvite} style={{ color: groupPublicChecked ? '#CCCCCC' : 'rgba(0, 0, 0, 0.87)', pointerEvents: groupPublicChecked ? 'none' : 'all' }}>
                         <Typography className={classes.gNameText}>Allow Members to Invite</Typography>
                         <Switch
