@@ -107,7 +107,7 @@ const GroupSettingsDialog = ({ open, onClose, currentGroupId }) => {
                     <Box className={classes.gInfoBox}>
                         <img src={groupAvatar} alt="" className={classes.gAvatar} />
                         <Typography className={classes.gNameText}>{groupsInfo?.name}</Typography>
-                        <Typography className={classes.gAppIdText}>AgoraID: supercalifragilisticexpialidocious</Typography>
+                        <Typography className={classes.gAppIdText}>GroupID:{groupsInfo?.id} </Typography>
                         <Typography className={classes.gDescriptionText}>{groupNotice}</Typography>
                     </Box>
                     <Tabs

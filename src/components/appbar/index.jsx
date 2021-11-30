@@ -194,11 +194,11 @@ export default function Header() {
             >
             </RequestDialog>
 
-            <UserInfoPopover
+            {/* <UserInfoPopover
                 open={showUserInfoPopover}
                 anchorEl={userInfoaddEl}
                 onClose={handleUserInfoClose}
-            />
+            /> */}
         </>
     )
 }
