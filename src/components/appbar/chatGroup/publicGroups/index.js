@@ -78,9 +78,9 @@ const useStyles = makeStyles((theme) => {
         gInfoBox: {
             display: 'flex',
             alignItems: 'center',
+            flex:'1',
             justifyContent: 'space-between',
             margin: '0 10px',
-            width: 'calc(100% - 40px)',
             cursor: 'pointer'
         },
         gAddedText: {
@@ -133,7 +133,7 @@ const PublicGroup = () => {
                 <img src={search_icon} alt="" className={classes.searchImg} />
                 <InputBase
                     type="search"
-                    placeholder="Srarch"
+                    placeholder="Search"
                     className={classes.inputSearch} 
                     onChange={handleSearchValue}
                 />

@@ -1,10 +1,11 @@
 import WebIM from '../../utils/WebIM'
 import store from '../../redux/store'
-import { contactsAciton, setBlackList, updateRequestStatus } from '../../redux/actions'
+import { contactsAciton, setBlackList, updateRequestStatus, searchLoadAction } from '../../redux/actions'
 
 const getContacts = () => {
     WebIM.conn.getRoster().then((res) => {
         store.dispatch(contactsAciton(res.data))
+        store.dispatch(searchLoadAction(false))
     });
 }
 

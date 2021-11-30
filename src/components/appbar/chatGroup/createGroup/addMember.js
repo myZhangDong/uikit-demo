@@ -8,6 +8,9 @@ import { Box, Checkbox, List, ListItem, InputBase } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import _ from 'lodash'
+import getContacts from '../../../../api/contactsChat/getContacts'
+import { searchContactsAction, searchLoadAction } from '../../../../redux/actions'
+import Loading from '../../../common/loading'
 import rearch_icon from '../../../../assets/search@2x.png'
 import back_icon from '../../../../assets/back@2x.png'
 import create_icon from '../../../../assets/create@2x.png'
@@ -104,8 +107,9 @@ const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
     const { groupNameValue, groupDescriptionValue } = groupInfoData
     const state = store.getState();
     const contacts = state?.constacts;
+    const isSearching = state?.isSearching || false
     const classes = useStyles();
-    const [checked, setChecked] = useState(false)
+    const [searchValue, setSearchValue] = useState('')
     const [groupMembers, setGroupMembers] = useState([]);
     const [contactsObjs, setContactsObjs] = useState([]);
 
@@ -116,8 +120,24 @@ const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
         setContactsObjs(contactsObjs)
     }, [contacts])
 
-    console.log('checked>>>', checked);
-   
+
+    // search value
+    const searchChangeValue = (e) => {
+        if (!(e.target.value)) {
+            getContacts();
+            store.dispatch(searchLoadAction(true))
+        } else {
+            setSearchValue(e.target.value)
+        }
+    }
+
+    // click search
+    const handleSearchValue = () => {
+        if (searchValue === '') return
+        store.dispatch(searchContactsAction(searchValue))
+    }
+
+
     const handleSelect = (val) => (e) => {
         if (e.target.checked) {
             groupMembers.push(val)
@@ -169,9 +189,17 @@ const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
                 <Box className={classes.gUserBox}>
                     <Box style={{ width: '50%', background: '#F5F7FA', padding: '10px' }}>
                         <Box className={classes.searchBox}>
-                            <InputBase type="search" placeholder={i18next.t('Your Contacts')} style={{width:'100%',padding:'5px'}}/>
-                            <img src={rearch_icon} alt="" style={{width:'32px', cursor:'pointer'}}/>
+                            <InputBase type="search" 
+                                placeholder={i18next.t('Your Contacts')} 
+                                style={{width:'100%',padding:'5px'}}
+                                onChange={searchChangeValue}
+                            />
+                            <img src={rearch_icon} alt="" 
+                                style={{width:'32px', cursor:'pointer'}}
+                                onClick={handleSearchValue}
+                            />
                         </Box>
+                        <Loading show={isSearching} />
                         <List>
                             {contactsObjs.length > 0 && contactsObjs.map((item, key) => {
                                 return (
@@ -193,7 +221,7 @@ const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
                                 return (
                                     <ListItem key={key} className={classes.contactsItem}>
                                         <Box style={{ display: 'flex', alignItems: 'center' }}>
-                                            <Box className={classes.gAvatar} style={{ width: '36px'}}></Box>
+                                            <Box className={classes.gAvatar} style={{ width: '36px',height:'36px'}}></Box>
                                             <Typography style={{ marginLeft: '10px' }}>{item}</Typography>
                                         </Box>
                                         <img src={deldete_icon} alt="" style={{ width: '20px', cursor:'pointer' }} onClick={deleteGroupMember(item)}/>
