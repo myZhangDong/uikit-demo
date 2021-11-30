@@ -1,5 +1,5 @@
 
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import i18next from "i18next";
 import store from '../../../../redux/store'
 import CommonDialog from '../../../common/dialog'
@@ -15,6 +15,8 @@ import rearch_icon from '../../../../assets/search@2x.png'
 import back_icon from '../../../../assets/back@2x.png'
 import create_icon from '../../../../assets/create@2x.png'
 import deldete_icon from '../../../../assets/delete@2x.png'
+import groupAvatar from '../../../../assets/groupAvatar.png'
+
 const useStyles = makeStyles((theme) => {
     return ({
         root: {
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme) => {
         gInfoText: {
             textAlign: 'center',
             width: '62%',
-            margin: 'auto 0',
+            marginTop:'20%'
         },
         gNameText: {
             typeface: 'Ping Fang SC',
@@ -83,27 +85,31 @@ const useStyles = makeStyles((theme) => {
             width: '20px',
             height: '20px'
         },
-        searchBox:{
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            height: '30px' 
+        searchBox: {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            height: '30px'
         },
-        contactsItem:{
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
+        contactsItem: {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
             height: '50px'
         },
-        memberBox:{
-            width: '50%', 
-            background: '#EDEFF2', 
-            padding: '10px' 
-        }
+        memberBox: {
+            width: '50%',
+            background: '#EDEFF2',
+            padding: '10px'
+        },
+        gAvatar: {
+            height: '100px',
+            width: '100px'
+        },
     })
 });
 
-const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
+const AddGroupMemberDialog = ({ groupInfoData, onClearValue, open, onClose }) => {
     const { groupNameValue, groupDescriptionValue } = groupInfoData
     const state = store.getState();
     const contacts = state?.constacts;
@@ -144,7 +150,7 @@ const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
             console.log('groupMembers', [...groupMembers])
             setGroupMembers([...groupMembers])
             contactsObjs.forEach((value) => {
-                if (value.id === val){
+                if (value.id === val) {
                     value.checked = true
                 }
             })
@@ -176,26 +182,32 @@ const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
 
     }
 
+    const handleCreateGroup = () => {
+        createGroup(groupInfoData, groupMembers, onClearValue, onClose)
+    }
+    let throttled = _.throttle(handleCreateGroup, 3000, { 'trailing': false });
+
+
     const renderMember = () => {
         return (
             <Box className={classes.root}>
                 <Box className={classes.gInfoText}>
                     <Box>
+                        <img src={groupAvatar} alt="" className={classes.gAvatar} />
                         <Typography className={classes.gNameText}>{groupNameValue}</Typography>
-                        <Typography className={classes.gAppIdText}>AgoraID: supercalifragilisticexpialidocious</Typography>
                         <Typography className={classes.gDescriptionText}>{groupDescriptionValue}</Typography>
                     </Box>
                 </Box>
                 <Box className={classes.gUserBox}>
                     <Box style={{ width: '50%', background: '#F5F7FA', padding: '10px' }}>
                         <Box className={classes.searchBox}>
-                            <InputBase type="search" 
-                                placeholder={i18next.t('Your Contacts')} 
-                                style={{width:'100%',padding:'5px'}}
+                            <InputBase type="search"
+                                placeholder={i18next.t('Your Contacts')}
+                                style={{ width: '100%', padding: '5px' }}
                                 onChange={searchChangeValue}
                             />
-                            <img src={rearch_icon} alt="" 
-                                style={{width:'32px', cursor:'pointer'}}
+                            <img src={rearch_icon} alt=""
+                                style={{ width: '32px', cursor: 'pointer' }}
                                 onClick={handleSearchValue}
                             />
                         </Box>
@@ -204,9 +216,9 @@ const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
                             {contactsObjs.length > 0 && contactsObjs.map((item, key) => {
                                 return (
                                     <ListItem key={key} onClick={handleSelect(item.id)} className={classes.contactsItem}>
-                                        <Box style={{ display: 'flex', alignItems: 'center'}}>
-                                            <Box className={classes.gAvatar} style={{width:'36px',height:'36px'}}></Box>
-                                            <Typography style={{marginLeft:'10px'}}>{item.id}</Typography>
+                                        <Box style={{ display: 'flex', alignItems: 'center' }}>
+                                            <Box className={classes.gAvatar} style={{ width: '36px', height: '36px' }}></Box>
+                                            <Typography style={{ marginLeft: '10px' }}>{item.id}</Typography>
                                         </Box>
                                         <Checkbox checked={item.checked} />
                                     </ListItem>
@@ -221,10 +233,10 @@ const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
                                 return (
                                     <ListItem key={key} className={classes.contactsItem}>
                                         <Box style={{ display: 'flex', alignItems: 'center' }}>
-                                            <Box className={classes.gAvatar} style={{ width: '36px',height:'36px'}}></Box>
+                                            <Box className={classes.gAvatar} style={{ width: '36px', height: '36px' }}></Box>
                                             <Typography style={{ marginLeft: '10px' }}>{item}</Typography>
                                         </Box>
-                                        <img src={deldete_icon} alt="" style={{ width: '20px', cursor:'pointer' }} onClick={deleteGroupMember(item)}/>
+                                        <img src={deldete_icon} alt="" style={{ width: '20px', cursor: 'pointer' }} onClick={deleteGroupMember(item)} />
                                     </ListItem>
                                 )
                             })}
@@ -237,7 +249,7 @@ const AddGroupMemberDialog = ({ groupInfoData, open, onClose }) => {
                     <Typography>{i18next.t('Back')}</Typography>
                 </Box>
                 {/* 创建 */}
-                <Box className={classes.goBox} onClick={() => createGroup(groupInfoData, groupMembers, onClose)}>
+                <Box className={classes.goBox} onClick={throttled}>
                     <Typography>{i18next.t('Create')}</Typography>
                     <img src={create_icon} alt="" className={classes.iconImg} />
                 </Box>

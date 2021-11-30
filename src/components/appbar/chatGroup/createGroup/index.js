@@ -5,7 +5,7 @@ import { Box, Switch, InputBase } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import AddGroupMemberDialog from './addMember'
-
+import { message } from '../../../common/alert'
 import go_icon from '../../../../assets/go@2x.png'
 
 const useStyles = makeStyles((theme) => {
@@ -145,6 +145,10 @@ const CreateGroup = () => {
 
     // 打开群组创建选择 member
     const handleSelectUserDialog = () => {
+        if (groupNameValue.match(/^\s*$/)) {
+            message.error(i18next.t('group name cannot be empty'))
+            return;
+        }
         setShowAddMemberDialog(true);
         setGroupInfoData({ groupNameValue, groupDescriptionValue, groupMaximumValue, groupPublicChecked, groupApprovalChecked, groupInviteChecked })
     }
@@ -153,12 +157,19 @@ const CreateGroup = () => {
         setShowAddMemberDialog(false);
     }
 
+    const handleClearValue = () => {
+        setGroupNameValue('');
+        setGroupDescriptionValue('');
+    }
+
     return (
         <Box>
             {showAddMemberDialog ?
                 <AddGroupMemberDialog
                     groupInfoData={groupInfoData}
-                    open={showAddMemberDialog} onClose={handleSelectUserDialogClose}
+                    onClearValue={handleClearValue}
+                    open={showAddMemberDialog} 
+                    onClose={handleSelectUserDialogClose}
                 />
                 : <Box>
                     <Box className={classes.inputBox}>
