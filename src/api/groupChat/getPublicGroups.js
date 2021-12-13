@@ -1,8 +1,8 @@
 
 import WebIM from '../../utils/WebIM'
 import store from '../../redux/store'
-import { groupListAciton, searchLoadAction } from '../../redux/actions'
-import { publicGroupsAciton, } from '../../redux/actions'
+import { searchLoadAction } from '../../redux/actions'
+import { publicGroupsAciton } from '../../redux/actions'
 const getPublicGroups = () => {
     let limit = 200,
         cursor = 1;

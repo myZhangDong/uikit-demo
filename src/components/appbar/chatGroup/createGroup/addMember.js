@@ -75,9 +75,9 @@ const useStyles = makeStyles((theme) => {
             cursor: 'pointer',
             color: '#005FFF'
         },
-        gAvatar: {
-            width: '40px',
-            height: '40px',
+        gMemberAvatar: {
+            width: '36px',
+            height: '36px',
             borderRadius: '20px',
             backgroundColor: '#FF9F4D',
         },
@@ -217,7 +217,7 @@ const AddGroupMemberDialog = ({ groupInfoData, onClearValue, open, onClose }) =>
                                 return (
                                     <ListItem key={key} onClick={handleSelect(item.id)} className={classes.contactsItem}>
                                         <Box style={{ display: 'flex', alignItems: 'center' }}>
-                                            <Box className={classes.gAvatar} style={{ width: '36px', height: '36px' }}></Box>
+                                            <Box className={classes.gMemberAvatar}></Box>
                                             <Typography style={{ marginLeft: '10px' }}>{item.id}</Typography>
                                         </Box>
                                         <Checkbox checked={item.checked} />
@@ -233,7 +233,7 @@ const AddGroupMemberDialog = ({ groupInfoData, onClearValue, open, onClose }) =>
                                 return (
                                     <ListItem key={key} className={classes.contactsItem}>
                                         <Box style={{ display: 'flex', alignItems: 'center' }}>
-                                            <Box className={classes.gAvatar} style={{ width: '36px', height: '36px' }}></Box>
+                                            <Box className={classes.gMemberAvatar} ></Box>
                                             <Typography style={{ marginLeft: '10px' }}>{item}</Typography>
                                         </Box>
                                         <img src={deldete_icon} alt="" style={{ width: '20px', cursor: 'pointer' }} onClick={deleteGroupMember(item)} />

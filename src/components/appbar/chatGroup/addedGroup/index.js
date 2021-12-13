@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Box, InputBase, List, ListItem, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
