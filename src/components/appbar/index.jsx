@@ -67,7 +67,7 @@ export default function Header() {
         avatarUrl = AVATARS[myUserInfo.avatarIndex]
     }
     useEffect(() => {
-        let avatarIndex = localStorage.getItem('avatarIndex')
+        let avatarIndex = localStorage.getItem('avatarIndex_1.0')
         if (avatarIndex !== undefined) {
             store.dispatch(setMyUserInfo({
                 ...myUserInfo,

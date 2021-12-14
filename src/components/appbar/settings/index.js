@@ -173,7 +173,7 @@ export default function Setting({ open, onClose }) {
             ...myUserInfo,
             avatarIndex: index
         }))
-        localStorage.setItem('avatarIndex', index)
+        localStorage.setItem('avatarIndex_1.0', index)
     }
 
     function tabs() {
@@ -241,7 +241,7 @@ export default function Setting({ open, onClose }) {
             }>
                 <div style={{ flex: 1 }}>
                     <div className={classes.aboutItem}>SDK version: 4.0.0</div>
-                    <div className={classes.aboutItem}>UIKIT version: 0.0.1</div>
+                    <div className={classes.aboutItem}>uikit version: 0.0.1</div>
                 </div>
             </div>
         )
