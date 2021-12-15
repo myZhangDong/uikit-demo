@@ -22,7 +22,7 @@ import store from '../../redux/store'
 import { setMyUserInfo } from '../../redux/actions'
 import { logout } from '../../api/loginChat'
 
-import UserInfoPopover from './userInfo'
+// import UserInfoPopover from './userInfo'
 
 import { useSelector } from "react-redux";
 
@@ -36,8 +36,8 @@ export default function Header() {
     const [showRequest, setShowRequest] = useState(false)
 
     // userInfo
-    const [showUserInfoPopover, setShowUserInfoPopover] = useState(false)
-    const [userInfoaddEl, setUserInfoAddEl] = useState(null)
+    // const [showUserInfoPopover, setShowUserInfoPopover] = useState(false)
+    // const [userInfoaddEl, setUserInfoAddEl] = useState(null)
     const [unDealRequestsNum, setUnDealRequestsNum] = useState(0)
     // let state = store.getState()
     const state = useSelector(state => state)
@@ -67,7 +67,7 @@ export default function Header() {
         avatarUrl = AVATARS[myUserInfo.avatarIndex]
     }
     useEffect(() => {
-        let avatarIndex = localStorage.getItem('avatarIndex')
+        let avatarIndex = localStorage.getItem('avatarIndex_1.0')
         if (avatarIndex !== undefined) {
             store.dispatch(setMyUserInfo({
                 ...myUserInfo,
@@ -102,13 +102,13 @@ export default function Header() {
         setShowChatGroup(false);
     }
 
-    const handleUserInfo = (e) => {
-        setUserInfoAddEl(e.currentTarget)
-        setShowUserInfoPopover(true);
-    }
-    const handleUserInfoClose = () => {
-        setShowUserInfoPopover(false);
-    }
+    // const handleUserInfo = (e) => {
+    //     setUserInfoAddEl(e.currentTarget)
+    //     setShowUserInfoPopover(true);
+    // }
+    // const handleUserInfoClose = () => {
+    //     setShowUserInfoPopover(false);
+    // }
 
     return (
         <>

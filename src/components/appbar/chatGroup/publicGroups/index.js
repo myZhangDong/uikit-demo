@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import i18next from "i18next";
-import { Box, InputBase } from '@material-ui/core';
+import { Box, InputBase, Avatar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import store from '../../../../redux/store'
@@ -10,6 +10,7 @@ import { addGroup } from '../../../../api/groupChat/addGroup'
 import getPublicGroups from '../../../../api/groupChat/getPublicGroups'
 import Loading from '../../../common/loading'
 import search_icon from '../../../../assets/search.png'
+import groupAvatar_icon from '../../../../assets/groupAvatar.png'
 
 const useStyles = makeStyles((theme) => {
     return ({
@@ -51,10 +52,10 @@ const useStyles = makeStyles((theme) => {
             alignItems: 'center'
         },
         gAvatar: {
-            width: '40px',
-            height: '40px',
-            borderRadius: '20px',
-            backgroundColor: '#FF9F4D',
+            width: '50px',
+            height: '50px',
+            borderRadius: 'inherit',
+            // backgroundColor: '#FF9F4D',
             cursor: 'pointer',
         },
         gNameText: {
@@ -144,7 +145,8 @@ const PublicGroup = () => {
                     pulicGroupsList.length > 0 && pulicGroupsList.map((item, key) => {
                         return (
                             <Box key={item.groupid} className={classes.gItem}>
-                                <Box className={classes.gAvatar}></Box>
+                                {/* <Box className={classes.gAvatar}></Box> */}
+                                <Avatar className={classes.gAvatar} src={groupAvatar_icon} ></Avatar>
                                 <Box className={classes.gInfoBox}>
                                     <Box>
                                         <Typography className={classes.gNameText}>{item.groupname}</Typography>

@@ -102,7 +102,7 @@ const CreateGroup = () => {
     const classes = useStyles();
     const [groupNameValue, setGroupNameValue] = useState('')
     const [groupDescriptionValue, setGroupDescriptionValue] = useState('')
-    const [groupMaximumValue, setGroupMaximumValue] = useState('')
+    // const [groupMaximumValue, setGroupMaximumValue] = useState('')
     const [groupPublicChecked, setGroupPublicChecked] = useState(true);
     const [groupApprovalChecked, setGroupApprovalChecked] = useState(true)
     const [groupInviteChecked, setGroupInviteChecked] = useState(false);
@@ -128,9 +128,9 @@ const CreateGroup = () => {
         setGroupDescriptionValue(event.target.value)
     }
     // 群组人数
-    const handleMaximumChange = (event) => {
-        setGroupMaximumValue(event.target.value)
-    }
+    // const handleMaximumChange = (event) => {
+    //     setGroupMaximumValue(event.target.value)
+    // }
     // 群组类别 公开/私有
     const handleGrooupPublicChange = (event) => {
         setGroupPublicChecked(event.target.checked);
@@ -150,7 +150,7 @@ const CreateGroup = () => {
             return;
         }
         setShowAddMemberDialog(true);
-        setGroupInfoData({ groupNameValue, groupDescriptionValue, groupMaximumValue, groupPublicChecked, groupApprovalChecked, groupInviteChecked })
+        setGroupInfoData({ groupNameValue, groupDescriptionValue, groupPublicChecked, groupApprovalChecked, groupInviteChecked })
     }
     // 关闭群组创建选择 member
     const handleSelectUserDialogClose = () => {
@@ -213,7 +213,8 @@ const CreateGroup = () => {
                                     value={200}
                                     style={{ color:'#CCCCCC'}}
                                     placeholder={i18next.t('No More Than 2000')}
-                                    onChange={groupMaximumValue} />
+                                    // onChange={groupMaximumValue} 
+                                    />
                             </Box>
                         </Box>
                     </Box>

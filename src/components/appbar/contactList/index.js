@@ -5,6 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { EaseApp } from 'es-uikit'
 import { useSelector } from 'react-redux'
+
+import avatarIcon1 from '../../../assets/avatar1.png'
+import avatarIcon2 from '../../../assets/avatar2.png'
+import avatarIcon3 from '../../../assets/avatar3.png'
+
 const useStyles = makeStyles((theme) => {
     return ({
         root: {
@@ -80,10 +85,23 @@ function AddressBookDialog(props) {
     const classes = useStyles();
     const constacts = useSelector((state) => state?.constacts) || []
 
+    const [userInfoObj, setUserInfoObj] = useState({})
+    let userAvatars = {
+        1: avatarIcon1,
+        2: avatarIcon2,
+        3: avatarIcon3
+    }
+    let getcontactsInfo = () => {
+        let usersInfoData = JSON.parse(localStorage.getItem("usersInfo_1.0"))
+        usersInfoData.map((item) => {
+            return setUserInfoObj(Object.assign(userInfoObj, { [item.username]: item.userAvatar }))
+        })
+    }   
     let contactsData = constacts.map((user) => {
         return {
             name: user,
-            jid: user
+            jid: user,
+            avatar: userInfoObj[user] ? userInfoObj[user] : Math.ceil(Math.random() * 3)
         }
     })
 
@@ -99,11 +117,9 @@ function AddressBookDialog(props) {
     }
 
     const handleChange = (e) => {
-        console.log(e.target.value)
         let serchValue = e.target.value
 
         let serchContact = contactsData.filter((user) => {
-            console.log('user', user)
             if (user.name.includes(serchValue)) {
                 return true
             }
@@ -140,6 +156,7 @@ function AddressBookDialog(props) {
                                                     <ListItemAvatar>
                                                         <Avatar
                                                             className={classes.avatar}
+                                                            src={userAvatars[userInfoObj[user.name]]}
                                                             alt={`${user.name}`}
                                                         >
                                                         </Avatar>
@@ -214,6 +231,15 @@ function AddressBookDialog(props) {
     useEffect(() => {
         let list = getBrands(contactsData)
         setContactList(list)
+        let infoData = []
+        contactsData.map((item) => {
+            infoData.push({
+                username: item.name,
+                userAvatar: item.avatar
+            })
+        })
+        localStorage.setItem("usersInfo_1.0", JSON.stringify(infoData))
+        getcontactsInfo()
         // // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [constacts.length])
 

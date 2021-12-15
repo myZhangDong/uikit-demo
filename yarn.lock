@@ -4812,15 +4812,16 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-es-uikit@1.0.42:
-  version "1.0.42"
-  resolved "https://registry.yarnpkg.com/es-uikit/-/es-uikit-1.0.42.tgz#62fd6b354ff4e81523cf55952d281e51da1c887c"
-  integrity sha512-CxCNUSpYmXbWa2uDDMfxPrfGKTtWl3D+0ELsK5aUzuLueuJEwV4B4fGo//VVomkmHpr2m4pcGWlsJEHTgOIkNg==
+es-uikit@2.0.14:
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/es-uikit/-/es-uikit-2.0.14.tgz#1d35719419e30c72f0337c52e51e471751351b4d"
+  integrity sha512-xXSRbQf0erZdctki0Zp97D+BkkE3YQBVS3xrt1iPRMsFg+rAOtUoj39+6kmUvAufSKytt49PNhd2bJm8Fq2DEg==
   dependencies:
     "@emotion/react" "^11.5.0"
     "@emotion/styled" "^11.3.0"
-    "@material-ui/core" "^5.0.0-beta.5"
+    "@material-ui/core" "^4.12.3"
     "@material-ui/icons" "^4.11.2"
+    "@material-ui/lab" "^4.0.0-alpha.60"
     "@material-ui/styles" "^4.11.4"
     "@pmmmwh/react-refresh-webpack-plugin" "0.4.3"
     "@svgr/webpack" "5.5.0"

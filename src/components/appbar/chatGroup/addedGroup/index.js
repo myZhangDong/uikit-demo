@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Box, InputBase, List, ListItem, Button } from '@material-ui/core';
+import { Box, InputBase, List, ListItem, Button, Avatar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { EaseApp } from 'es-uikit'
@@ -12,6 +12,7 @@ import getGroupInfo from '../../../../api/groupChat/getGroupInfo'
 import getGroups from '../../../../api/groupChat/getGroups'
 import Loading from '../../../common/loading'
 import search_icon from '../../../../assets/search.png'
+import groupAvatar_icon from '../../../../assets/groupAvatar.png'
 
 const useStyles = makeStyles((theme) => {
     return ({
@@ -51,10 +52,10 @@ const useStyles = makeStyles((theme) => {
             cursor: 'pointer',
         },
         gAvatar: {
-            width: '40px',
-            height: '40px',
-            borderRadius: '20px',
-            backgroundColor: '#FF9F4D',
+            width: '50px',
+            height: '50px',
+            borderRadius: 'inherit',
+            // backgroundColor: '#FF9F4D',
         },
         gName: {
             // borderRadius: '16px',
@@ -136,7 +137,9 @@ const AddedGroups = ({ onClose }) => {
                     {groupList.length > 0 && groupList.map((item, key) => {
                         return (
                             <ListItem className={classes.gInfoBox} key={key}>
-                                <Box className={classes.gAvatar} onClick={() => handleGroupInfo(item.groupid)}></Box>
+                                {/* <Box  onClick={() => handleGroupInfo(item.groupid)}></Box> */}
+                                <Avatar className={classes.gAvatar} src={groupAvatar_icon} onClick={() => handleGroupInfo(item.groupid)}></Avatar>
+
                                 <Box style={{ flex:'1' }} onClick={() => { handleClickSession(item.groupid) }}>
                                     <Button className={classes.gName}>
                                         <Typography className={classes.gNameText}>{item.groupname}</Typography>

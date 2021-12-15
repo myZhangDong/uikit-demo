@@ -10,7 +10,7 @@ const loginChat = () => {
 }
 
 export const getToken = (agoraId, nickName) => {
-    return postData('https://a61.easemob.com/app/chat/user/login', { "userAccount": agoraId, "userNickname": nickName })
+    return postData('https://a41.easemob.com/app/chat/user/login', { "userAccount": agoraId, "userNickname": nickName })
 }
 
 export const loginWithToken = (agoraId, agoraToken) => {
