@@ -92,8 +92,8 @@ function AddressBookDialog(props) {
         3: avatarIcon3
     }
     let getcontactsInfo = () => {
-        let usersInfoData = JSON.parse(localStorage.getItem("usersInfo_1.0"))
-        usersInfoData.map((item) => {
+        let usersInfoData = JSON.parse(localStorage.getItem("usersInfo_1.0")) || []
+        usersInfoData.length > 0 && usersInfoData.map((item) => {
             return setUserInfoObj(Object.assign(userInfoObj, { [item.username]: item.userAvatar }))
         })
     }   
@@ -232,13 +232,15 @@ function AddressBookDialog(props) {
         let list = getBrands(contactsData)
         setContactList(list)
         let infoData = []
-        contactsData.map((item) => {
+        contactsData.length > 0 && contactsData.map((item) => {
             infoData.push({
                 username: item.name,
                 userAvatar: item.avatar
             })
         })
-        localStorage.setItem("usersInfo_1.0", JSON.stringify(infoData))
+        if (infoData.length > 0) {
+            localStorage.setItem("usersInfo_1.0", JSON.stringify(infoData))
+        }
         getcontactsInfo()
         // // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [constacts.length])
