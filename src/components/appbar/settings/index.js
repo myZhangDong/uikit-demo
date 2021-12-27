@@ -241,7 +241,7 @@ export default function Setting({ open, onClose }) {
             }>
                 <div style={{ flex: 1 }}>
                     <div className={classes.aboutItem}>SDK version: 4.0.0</div>
-                    <div className={classes.aboutItem}>uikit version: 0.0.2</div>
+                    <div className={classes.aboutItem}>uikit version: 0.0.3</div>
                 </div>
             </div>
         )

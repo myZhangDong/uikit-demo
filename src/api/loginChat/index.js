@@ -1,13 +1,5 @@
 import WebIM from '../../utils/WebIM'
 
-const loginChat = () => {
-    let options = {
-        user: 'lizg2',
-        pwd: '1',
-        appKey: WebIM.config.appkey
-    };
-    WebIM.conn.open(options)
-}
 
 export const getToken = (agoraId, nickName) => {
     return postData('https://a41.easemob.com/app/chat/user/login', { "userAccount": agoraId, "userNickname": nickName })
@@ -43,4 +35,3 @@ export function logout() {
 }
 
 
-export default loginChat;

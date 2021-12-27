@@ -4,6 +4,8 @@ import './login.css'
 import { loginWithToken } from '../api/loginChat'
 import WebIM from '../utils/WebIM';
 import { EaseApp } from 'es-uikit'
+import { createHashHistory } from 'history'
+const history = createHashHistory()
 
 export default function Main() {
 
@@ -14,6 +16,8 @@ export default function Main() {
         if (webimAuth && WebIM.conn.logOut) {
             webimAuthObj = JSON.parse(webimAuth)
             loginWithToken(webimAuthObj.agoraId, webimAuthObj.accessToken)
+        }else if (WebIM.conn.logOut) {
+            history.push('/login')  
         }
     }, [])
     console.log('***  WebIM.conn **', WebIM.conn)

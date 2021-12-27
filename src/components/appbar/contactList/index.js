@@ -112,7 +112,7 @@ function AddressBookDialog(props) {
             sessionType: "singleChat",
             sessionId: itemData,
         };
-        EaseApp.onClickSession(session);
+        EaseApp.addSessionItem(session);
         onClose()
     }
 
