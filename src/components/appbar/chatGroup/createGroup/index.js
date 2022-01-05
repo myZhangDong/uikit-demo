@@ -110,7 +110,7 @@ const CreateGroup = () => {
     const [groupInfoData, setGroupInfoData] = useState({})
     const [showGroupNamelimit, setShowGroupNamelimit] = useState(false)
 
-    // 群组名称
+    // Group Name
     const handleNameChange = (event) => {
         let inputValue = event.target.value
         if (inputValue.length > 20) {
@@ -123,27 +123,26 @@ const CreateGroup = () => {
         }
        
     }
-    // 群组描述
+    // Group Description
     const handleDescriptionChange = (event) => {
         setGroupDescriptionValue(event.target.value)
     }
-    // 群组人数
+    //
     // const handleMaximumChange = (event) => {
     //     setGroupMaximumValue(event.target.value)
     // }
-    // 群组类别 公开/私有
+
+    // Group Type： prublic/private
     const handleGrooupPublicChange = (event) => {
         setGroupPublicChecked(event.target.checked);
     };
     const handleGrooupApprovalChange = (event) => {
         setGroupApprovalChecked(event.target.checked)
     }
-    // 群组是否允许成员邀请
     const handleGroupInviteChange = (event) => {
         setGroupInviteChecked(event.target.checked);
     };
 
-    // 打开群组创建选择 member
     const handleSelectUserDialog = () => {
         if (groupNameValue.match(/^\s*$/)) {
             message.error(i18next.t('group name cannot be empty'))
@@ -152,7 +151,6 @@ const CreateGroup = () => {
         setShowAddMemberDialog(true);
         setGroupInfoData({ groupNameValue, groupDescriptionValue, groupPublicChecked, groupApprovalChecked, groupInviteChecked })
     }
-    // 关闭群组创建选择 member
     const handleSelectUserDialogClose = () => {
         setShowAddMemberDialog(false);
     }

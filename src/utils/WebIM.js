@@ -17,7 +17,6 @@ const WebIM = EaseApp.getSdk({ appkey: '41117440#383391' })
 //     delivery: WebIM.config.delivery,
 //     useOwnUploadFun: WebIM.config.useOwnUploadFun,
 //     deviceId: WebIM.config.deviceId,
-//     //公有云 isHttpDNS 默认配置为true
 //     isHttpDNS: WebIM.config.isHttpDNS,
 // };
 // WebIM.conn = new websdk.connection(options);
