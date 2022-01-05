@@ -12,16 +12,9 @@
 
 var config = {
     /*
-     * websocket server
-     * im-api-v2.easemob.com/ws 线上环境
-     * im-api-v2-hsb.easemob.com/ws 沙箱环境
+     * Server
      */
     // socketServer: getUrl().socketUrl, //(window.location.protocol === "https:" ? "https:" : "http:") + "//im-api-v2.easemob.com/ws",
-    /*
-     * Backend REST API URL
-     * a1.easemob.com 线上环境
-     * a1-hsb.easemob.com 沙箱环境
-     */
     // restServer: getUrl().apiUrl, //(window.location.protocol === "https:" ? "https:" : "http:") + "//a1.easemob.com",
     /*
      * Application AppKey
@@ -36,10 +29,6 @@ var config = {
      * @parameter {Boolean} true or false
      */
     https: true,
-    /*
-     * 公有云配置默认为 true，
-     * 私有云配置请设置 isHttpDNS = false , 详细文档：http://docs-im.easemob.com/im/web/other/privatedeploy
-     */
     isHttpDNS: true,
     /*
      * isMultiLoginSessions
@@ -50,7 +39,7 @@ var config = {
     /**
      * @parameter {Boolean} true or false
      */
-    isSandBox: false, //内部测试环境，集成时设为false
+    isSandBox: false, 
     /**
      * Whether to console.log
      * @parameter {Boolean} true or false

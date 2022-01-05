@@ -115,7 +115,7 @@ const AddedGroups = ({ onClose }) => {
             sessionType: "groupChat",
             sessionId: itemData,
         };
-        EaseApp.onClickSession(session);
+        EaseApp.addSessionItem(session);
         onClose();
     }
 

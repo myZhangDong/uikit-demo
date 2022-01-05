@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect, useCallback } from 'react'
 import './login.css'
 import i18next from "i18next";
 import { getToken, loginWithToken } from '../api/loginChat'
@@ -20,7 +20,7 @@ export default function Login() {
         nickName: '',
     });
 
-    const login = () => {
+    const login = useCallback(() => {
         console.log('values', values)
         if (!values.agoraId) {
             return setNotice({ show: true, text: 'agoraId is required' })
@@ -41,13 +41,28 @@ export default function Login() {
             store.dispatch(setMyUserInfo({ agoraId: values.agoraId, nickName: values.nickName }))
             sessionStorage.setItem('webim_auth', JSON.stringify({ ...values, accessToken }))
         })
-    }
+    }, [values])
+
+    useEffect(() => {
+        const listener = function (event) {
+            let curKey = event.which
+            if (curKey === 13) {
+                console.log('AAA>>>');
+                login()
+            }
+        }
+        document.addEventListener('keydown', listener);
+        return () => {
+            document.removeEventListener('keydown', listener)
+        }
+    }, [login])
 
     const handleChange = (prop) => (event) => {
         let value = event.target.value
         if (prop === 'agoraId') {
             value = event.target.value.replace(/[^\w\.\/]/ig, '')
         }
+        console.log('value', value)
         setValues({ ...values, [prop]: value });
     };
 
